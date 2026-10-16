@@ -35,7 +35,7 @@ PATTERNS = {
 EMAIL = re.compile(r"[A-Za-z0-9_.+-]+@([A-Za-z0-9.-]+\.[A-Za-z]{2,})")
 SAFE_EMAIL_DOMAINS = {"example.com", "example.org", "example.net", "users.noreply.github.com"}
 SUFFIXES = {".py", ".mjs", ".md", ".json", ".toml", ".cfg", ".in", ".yml", ".yaml", ".txt", ".csv"}
-BARE_FILES = {"LICENSE", "NOTICE", "PKG-INFO", "WHEEL", "METADATA", "RECORD", "AGENTS.md", ".gitignore"}
+BARE_FILES = {"LICENSE", "NOTICE", "PKG-INFO", "WHEEL", "METADATA", "RECORD", "AGENTS.md", ".gitignore", "LICENSE-MICROSOFT"}
 BLOCKED_PARTS = {".ssh", ".aws", ".azure", ".venv", "credentials", "secrets", "__pycache__"}
 
 
@@ -67,7 +67,7 @@ def check_bytes(name, data, errors):
             if pattern.search(line):
                 errors.append(f"{name}:{number}: {label}")
         for match in EMAIL.finditer(line.replace("git@github.com:", "")):
-            if match[1].lower() not in SAFE_EMAIL_DOMAINS:
+            if match[1].lower() not in SAFE_EMAIL_DOMAINS and match[0] != "opencode@microsoft.com":
                 errors.append(f"{name}:{number}: personal contact address")
 
 

@@ -426,3 +426,40 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# Controller package outputs and private configuration
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.p8
+*.keystore
+credentials.json
+credentials/
+secrets/
+.ssh/
+.aws/
+.azure/
+.npmrc
+.pypirc
+*.sqlite*
+*.db
+*.egg-info/
+build/
+dist/
+.DS_Store
+outputs/
+results/
+artifacts/
+data/
+checkpoints/
+models/
+*.log
