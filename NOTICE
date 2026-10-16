@@ -1,7 +1,7 @@
 CHISEL (Jev-inspired controllers)
 Copyright 2026 PhiAgent-0 contributors
 
-Extracted from PhiAgent-0 source under the Apache License, Version 2.0.
+Distributed under the Apache License, Version 2.0.
 SOURCE_MANIFEST.json records the original paths and hashes and the release changes.
 The Jev name identifies a design reference. This project is not affiliated with
 TypeSafe and does not redistribute Jev models, weights, or services.

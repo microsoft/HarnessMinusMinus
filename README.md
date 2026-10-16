@@ -2,7 +2,7 @@
 
 Jev-inspired typed decisions, bounded recovery, and modular rule evolution for language-model agents.
 
-CHISEL preserves an agent's original prompt and tool contract while controlling when to accept a compact decision, refine it, or return to the original reasoning path. This repository extracts the reusable controllers from PhiAgent-0 into a small Python package with no runtime dependencies.
+CHISEL preserves an agent's original prompt and tool contract while controlling when to accept a compact decision, refine it, or return to the original reasoning path. The reusable controllers are provided as a small Python package with no runtime dependencies.
 
 ## Install
 
@@ -74,7 +74,7 @@ Version 0.2.0 updates the reusable implementation through October 2026. Official
 
 ## Source and license
 
-The code was extracted from a working PhiAgent-0 checkout. Imports were moved into the `chisel` namespace; original protocol identifiers remain unchanged. [SOURCE_MANIFEST.json](SOURCE_MANIFEST.json) records the source commit, actual file hashes, destination paths, and extraction changes. See [the source map](docs/SOURCE_MAP.md).
+The controllers use the `chisel` Python namespace and retain their original protocol identifiers. [SOURCE_MANIFEST.json](SOURCE_MANIFEST.json) records the source commit, actual file hashes, destination paths, and extraction changes. See [the source map](docs/SOURCE_MAP.md).
 
 Apache-2.0. Existing copyright notices are preserved in [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
