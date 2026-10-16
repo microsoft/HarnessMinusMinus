@@ -1,8 +1,46 @@
 # AgentMinusMinus
 
-Jev-inspired typed decisions, bounded recovery, and modular rule evolution for language-model agents.
+Code for **ReHO: Optimizing Agent Execution Control Flow through Guarded Decision Reuse**.
 
-CHISEL preserves an agent's original prompt and tool contract while controlling when to accept a compact decision, refine it, or return to the original reasoning path. The reusable controllers are provided as a small Python package with no runtime dependencies.
+ReHO (Reuse-based Harness Optimization) optimizes the execution control flow of an existing agent harness while actor weights remain fixed. A controller at the model-tool boundary reuses resolved decisions to replace later reasoning callbacks. New semantic decisions, unsupported evidence, and selector abstention invoke the original actor again.
+
+## Method
+
+The method has three components, using the terminology of the paper:
+
+| Component | Role |
+| --- | --- |
+| **Executable Decision Graphs (EDG)** | Store exact native actions, complete literal arguments, causal dependencies, and public guards authored by slow reasoning. |
+| **Guarded Decision Reuse (GDR)** | Retain the graph across tool transitions and activate eligible decisions from observed public receipts. A typed selector returns an eligible candidate ID or abstains; a unique eligible node can execute deterministically. |
+| **Certified Callback Substitution (CCS)** | Execute an admitted action through the native interface and bind its actual receipt to omission of the registered slow callback. |
+
+Slow reasoning resolves the current action and future decisions. EDG compiles those decisions into executable nodes. GDR checks predecessor completion, public guards, and literal argument closure. CCS executes the admitted node in place of the later slow callback. Each execution receipt updates the same graph; new inference returns control to the slow actor.
+
+A substitution certificate binds the graph hash, decision ID, predecessor receipt, exact arguments, tool receipt, and bypassed callback ID. Certificates establish native execution and callback omission. Native scoring measures task correctness; complete-task totals measure cost. The paper calls the overhead of adding selection without eliminating downstream deliberation the **Substitution Paradox**.
+
+Prompt editing, context compaction, instruction optimization, and finalization rules are companion configurations. They are developed on training data, selected before evaluation, and held fixed during execution. The runtime selector chooses an eligible stored action or abstains.
+
+## Results reported in the paper
+
+The following complete HumanEval comparison uses Qwen3.5-4B on all 98 test tasks:
+
+| Harness | Success (%) | Tokens/task (k) |
+| --- | ---: | ---: |
+| DeepSeek Harness | 71.43 | 96.28 |
+| DeepSeek Harness + ReHO | 85.71 | 11.62 |
+
+This integrated configuration combines decision reuse with fixed context and finalization settings. The separate matched MBPP-sanitized ablation holds authoring and context settings common on all 257 test tasks:
+
+| Condition | Success (%) | Tokens/task (k) |
+| --- | ---: | ---: |
+| Full ReHO | 93.77 | 13.17 |
+| W/o GDR (single-use EDG) | 93.00 | 18.03 |
+| W/o CCS (callbacks retained) | 93.39 | 16.37 |
+| EDG execution disabled | 95.33 | 16.19 |
+
+Full ReHO reduces complete cost by 26.91% relative to single-use EDGs and by 19.52% relative to retained callbacks. Disabling EDG execution solves four more tasks at higher cost. These ablations test graph persistence and callback removal; the certificate's independent benefit is not ablated.
+
+Token cost includes actor input plus output for authorship, selector calls, added context, remaining slow calls, fallback, recovery, finalization, and failed paid executions. Cached input remains counted. Development costs are reported separately.
 
 ## Install
 
@@ -20,67 +58,44 @@ python -m pytest -q
 
 The tests use synthetic inputs and mocked responses. They do not load benchmark datasets, invoke evaluators, contact providers, or require a GPU. Node.js 22 or later is needed for the optional Codex native-bank bridge and its tests. The Python controllers use only the standard library.
 
-## Modules
+## Repository interfaces
 
-| Area | Entry point | Behavior |
+The Python namespace remains `chisel`, and the distribution name remains `chisel-jev` for compatibility. Method descriptions use ReHO, EDG, GDR, and CCS as in the paper.
+
+| Area | Entry points | Role in the repository |
 | --- | --- | --- |
-| QA draft/check loop | `chisel.harness.jev_interleave` | Checks exact source quotations and four typed judgments; permits at most two drafts before fallback. |
-| QA call accounting | `chisel.adapters.qa.solve` | Connects the loop to a caller-supplied provider and records tokens for every draft, judgment, refinement, and fallback. |
-| QA recovery | `chisel.learning.qa_typed_recovery` | Uses source evidence and explicit keep/restore decisions. |
-| Rule evolution | `chisel.learning.qa_meta_rsi`, `qa_single_module_rsi` | Applies bounded edits, preserves module lineage, and checks paired quality/cost evidence. |
-| ALFWorld | `chisel.learning.alfworld_jev`, `alfworld_modular_rsi` | Selects admissible actions, retrieves source rules, and builds typed public-progress choices. |
-| Spreadsheet tools | `chisel.sb2_protocol.jev_recovery` | Restores or compacts tool history after public stalls and proposes bounded deterministic followups. |
-| Terminal tools | `chisel.harness.terminal_jev.TerminalJevSession` | Validates short tool plans and checks public execution conditions. |
-| GAIA2 | `chisel.harness.gaia2_jev.PublicContinuation` | Gates planned tool continuations on public observations, errors, and refresh limits. |
-| Structured action banks | `chisel.harness.gaia2_structured_bank_v9` | Serializes real reasoning, the current native action, and a later-action bank in one call; retains metered fallback costs. |
-| Public receipt bindings | `chisel.harness.gaia2_typed_continuation_bank` | Resolves typed arguments against exact recorded public receipts and defers ambiguous bindings. |
-| Context compression | `chisel.harness.gaia2_public_context_codec_v14` | Interns repeated public strings with a verified lossless round trip. |
-| Native tool boundary | `chisel.harness.codex_native_app_bank.NativeBankBoundary` | Runs slow-authored candidates through a caller-supplied native executor and independently metered judge. Requires Node.js. |
-| Supported candidates | `chisel.learning.supported_local_decision` | Commits a supported selection or calls the original fallback once; callback errors propagate. |
-| Guarded continuations | `chisel.learning.conditional_microplans`, `observed_feedback_plans` | Checks actual feedback and native action membership before one continuation. |
-| Learned fragment contracts | `chisel.learning.fragment_contracts`, `residual_programs`, `grounded_continuations` | Compiles public transition evidence and retrieves supported continuations with source-group exclusions. |
-| Calibration | `chisel.learning.chisel.select_domain_policy` | Selects a predeclared policy from calibration evidence and reports admission failures. |
+| Native action-bank execution | `chisel.harness.codex_native_app_bank`, bundled `contracts/cot_jev.mjs` | Slow-authored action banks, public receipts, finite-choice selection, native dispatch, and execution records. |
+| Shared commit-or-defer control | `chisel.learning.supported_local_decision` | Candidate support and membership checks, one native commitment or original actor fallback. |
+| Public-state adapters | `chisel.harness.gaia2_cot_jev`, `gaia2_typed_continuation_bank`, `terminal_jev` | Native tool contracts, public receipt bindings, and domain-specific continuation checks. |
+| Context configurations | `chisel.harness.gaia2_public_context_codec_v14`, `gaia2_fused_bank_v16` | Public-context compaction used as a companion intervention. |
+| Instruction and answer-policy studies | `chisel.adapters.qa`, `chisel.learning.qa_typed_recovery`, `alfworld_modular_rsi`, `qa_meta_rsi` | Companion configurations with their own intervention and evaluation scope. |
+| Additional continuation adapters | `chisel.learning.conditional_microplans`, `observed_feedback_plans`, `fragment_contracts`, `residual_programs`, `grounded_continuations` | Public-feedback continuation and source-supported retrieval interfaces. |
+
+The release contains reusable controllers and synthetic tests. Frozen benchmark integrations, datasets, learned snapshots, experiment receipts, and result artifacts are separate. The interface map does not substitute for the paper's frozen evaluation configurations. See [method and terminology](docs/METHOD.md), [integration](docs/INTEGRATION.md), and [reproducibility](docs/REPRODUCIBILITY.md).
 
 ## Connect an agent
 
-The controllers accept functions and public observations. You supply the model transport and native tool executor. The package does not choose or launch a model.
+Supply the original actor callback, a public-state adapter, and the native action dispatcher. Record actual tool feedback after each execution. The shared controller can commit a supported literal action or defer once:
 
 ```python
-from chisel.harness.jev_interleave import (
-    interleave, generator_messages, verifier_messages,
+from chisel.learning.supported_local_decision import (
+    SupportedCandidates, execute_supported_decision,
 )
 
-def answer(question, context, generate_text, original_answer):
-    return interleave(
-        context=context,
-        generate=lambda previous, decisions: generate_text(
-            generator_messages(question, context, previous, decisions)
-        ),
-        judge=lambda draft: generate_text(
-            verifier_messages(question, context, draft)
-        ),
-        fallback=original_answer,
-        maximum_drafts=2,
-    )
+result = execute_supported_decision(
+    SupportedCandidates(True, ("make test",), "Observed predecessor return code is zero"),
+    commit=native_execute,
+    fallback=original_actor,
+)
 ```
 
-`generate_text` returns JSON text. `original_answer` is a zero-argument callback that executes the frozen original prompt. Provider failures propagate to the caller; they are not converted into successful decisions. For schemas, output limits, and complete token accounting, use the [QA adapter example](examples/qa_adapter.py) and [integration guide](docs/INTEGRATION.md).
-
-## Scope
-
-“Jev-inspired” refers to typed judgments, abstention, and bounded control flow. These controllers use ordinary model outputs or deterministic rules; they do not reproduce Jev's architecture or calibrated probabilities. No TypeSafe account or SDK is needed. Legacy ALFWorld protocol constructors remain for compatibility but perform no network calls.
-
-Version 0.2.0 updates the reusable implementation through October 2026. Official benchmark harnesses, datasets, checkpoints, learned skill snapshots, cluster launchers, and experimental results are separate artifacts. A passing test suite establishes controller behavior. See [reproducibility requirements](docs/REPRODUCIBILITY.md), the [release notes](CHANGELOG.md), and [publication checks](SECURITY.md).
+Here `native_execute` and `original_actor` are caller-supplied callbacks, and the adapter supplies the actual support evidence. The complete EDG integration also retains graph dependencies, checks public guards, registers the slow boundary, and records receipt-bound substitution certificates. A generic support trace alone is not a CCS certificate.
 
 ## Source and license
 
-The controllers use the `chisel` Python namespace and retain their original protocol identifiers. [SOURCE_MANIFEST.json](SOURCE_MANIFEST.json) records the source commit, actual file hashes, destination paths, and extraction changes. See [the source map](docs/SOURCE_MAP.md).
+[SOURCE_MANIFEST.json](SOURCE_MANIFEST.json) records source and release hashes, destination paths, and extraction changes. [The source map](docs/SOURCE_MAP.md) identifies the released modules. Protocol identifiers remain unchanged.
 
-Apache-2.0. Existing copyright notices are preserved in [LICENSE](LICENSE) and [NOTICE](NOTICE).
-
-## Repository license
-
-The controller package is licensed under Apache-2.0. The original Microsoft repository template license is preserved in [LICENSE-MICROSOFT](LICENSE-MICROSOFT).
+The controller package is licensed under [Apache-2.0](LICENSE). Existing copyright notices are preserved in [LICENSE](LICENSE) and [NOTICE](NOTICE). The original Microsoft repository template license is preserved in [LICENSE-MICROSOFT](LICENSE-MICROSOFT).
 
 ## Contributing
 

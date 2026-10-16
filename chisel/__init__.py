@@ -1,4 +1,4 @@
-"""Jev-inspired CHISEL controllers with provider-independent interfaces."""
+"""Reusable execution controllers with provider-independent interfaces for ReHO."""
 
 from .harness.jev_interleave import Draft, interleave
 from .learning.chisel import CalibrationCandidate, select_domain_policy

@@ -1,5 +1,7 @@
 # Reproducibility
 
+The method is ReHO (Reuse-based Harness Optimization): Executable Decision Graphs (EDG), Guarded Decision Reuse (GDR), and Certified Callback Substitution (CCS). Follow [METHOD.md](METHOD.md) for the paper definitions. Preserve separate attribution for prompt, context, instruction, and finalization configurations.
+
 ## This release
 
 This is a source extraction, with an installable controller library and synthetic unit tests. Cluster-specific deployment, raw logs, benchmark data, credentials, model checkpoints, and experiment results were excluded. `SOURCE_MANIFEST.json` identifies the actual source bytes, including working-tree changes; the commit alone is not an exact snapshot of those bytes.
@@ -18,6 +20,6 @@ Split independent questions, tasks, scenarios, or groups into 20% training, 20% 
 
 Use matched comparisons and ablations with the same native tools, scoring, model identity, execution count, and limits. Record exact input/output/total tokens and the complete execution denominator, including author, control, fallback, and failed-execution costs. Report consumption as `Tokens/task (k)` with two decimal places: total measured actor input plus output tokens divided by all matched executions and by 1,000. Keep unknown costs explicit. Synthetic tests and transport checks establish implementation behavior; benchmark claims require their frozen evidence.
 
-## Known limits
+## Execution evidence
 
-Typed validity does not establish factual correctness. A generator and verifier using the same model can share errors. Local source windows can omit evidence. Deterministic continuation can only use conditions encoded in the public state. The original reasoning path and native environment remain necessary parts of each integration.
+A CCS audit binds graph identity, the selected decision, predecessor completion, exact native arguments, the actual tool receipt, and the omitted registered slow callback. Generic support or execution traces alone do not establish this complete contract. Typed validity does not establish factual correctness. A generator and verifier using the same model can share errors. Local source windows can omit evidence. Deterministic continuation can only use conditions encoded in the public state. The original reasoning path and native environment remain necessary parts of each integration.

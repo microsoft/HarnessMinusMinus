@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "chisel-jev"
 version = "0.2.0"
-description = "Jev-inspired CHISEL: typed decisions, bounded recovery, and modular rule evolution"
+description = "ReHO: optimizing agent execution control flow through guarded decision reuse"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"

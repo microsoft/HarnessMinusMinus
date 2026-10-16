@@ -1,8 +1,10 @@
 # Integration
 
+ReHO (Reuse-based Harness Optimization) comprises Executable Decision Graphs (EDG), Guarded Decision Reuse (GDR), and Certified Callback Substitution (CCS). The [method guide](METHOD.md) defines the paper terminology and the distinction between core execution control and companion configurations. The `chisel` namespace and `jev` API names remain stable implementation identifiers.
+
 [controller_defaults.json](../configs/controller_defaults.json) contains explicit controller settings for integration examples. It is not a frozen benchmark configuration.
 
-## QA generation and typed judgments
+## Companion answer-policy configuration: QA generation and typed judgments
 
 `interleave()` validates each draft against `DRAFT_SCHEMA` and accepts it only when all four entries in `DECISION_SCHEMA` are `pass`. `fail` and `unknown` permit one refinement. Invalid output, an absent source quotation, or unresolved judgments return to the original callback. A repeated failed draft stops the loop. The verifier sees the quotation and up to 160 characters on either side; it may miss contrary evidence elsewhere in the source.
 
@@ -54,6 +56,6 @@ This optional module invokes the bundled `contracts/codex_bank_contract.mjs` usi
 
 `conditional_microplans` and `observed_feedback_plans` use an explicit decide/install/observe lifecycle. Supply the actual native action and feedback after every execution. A continuation cannot advance on a predicted observation or overwrite an outstanding action. Fragment contracts, residual programs, and grounded continuations accept caller-supplied training evidence with source-group exclusions. Keep evaluation labels and held-out trajectories outside the fitting inputs.
 
-## Rule evolution
+## Companion configuration: rule evolution
 
 The `qa_meta_rsi` and `qa_single_module_rsi` modules accept explicit skill states, proposals, source hashes, and paired evidence. They preserve module boundaries, keep training support separate from held-out evaluation, and retain lineage. Their gate functions operate on supplied measurements; the release includes no learned skill or benchmark result.

@@ -1,11 +1,16 @@
-# Release check
+# Release validation
 
-- Scope: reusable controller package and synthetic tests.
-- Python: 3.14.7.
-- Validation: 153 synthetic unit tests passed.
-- Packaging: editable installation, source distribution, and wheel built successfully.
-- Imports: all 27 package submodules imported without model, GPU, network, or benchmark dependencies.
-- Provenance: 32 extracted-file hashes verified against SOURCE_MANIFEST.json.
-- Publication scan: no matches for private-key blocks, supported token patterns, private IPs, or workstation paths. This was a pattern scan, not a security certification.
-- External artifacts: datasets, model weights, learned skill snapshots, and cluster orchestration excluded.
-- Official benchmarks: not run as part of this release.
+The repository exposes reusable controllers and adapters associated with ReHO. Its method definitions follow [METHOD.md](METHOD.md); companion configurations retain separate attribution.
+
+Run validation from the repository root:
+
+```bash
+python tools/check_release.py --history
+python -m pytest -q
+python -m build
+python tools/check_release.py --distributions dist
+```
+
+The current synthetic suite contains 2,020 tests. The source manifest binds 69 extracted files to their source and release hashes. Package initializers, documentation, and publication tooling are additional repository files. The optional native action-bank bridge requires Node.js 22 or later.
+
+Publication checks cover current source, reachable Git blobs, and built distributions. Model weights, datasets, private configuration, learned snapshots, raw receipts, and cluster orchestration are separate assets. Synthetic test results validate controller behavior; the scientific measurements in the README come from the manuscript's matched benchmark evaluations.
