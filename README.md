@@ -1,4 +1,4 @@
-# CHISEL
+# AgentMinusMinus
 
 Jev-inspired typed decisions, bounded recovery, and modular rule evolution for language-model agents.
 
