@@ -1,0 +1,31 @@
+{
+  "qa_interleave": {
+    "maximum_drafts": 2,
+    "draft_max_tokens": 192,
+    "judge_max_tokens": 96,
+    "backend": "qwen_typed_decision_proxy"
+  },
+  "terminal": {
+    "mode": "guarded",
+    "maximum_followups": 2,
+    "explicit_plan": true,
+    "condition_target": "self"
+  },
+  "spreadsheet": {
+    "recent_rounds": 2,
+    "maximum_fast_steps": 3,
+    "maximum_output_tokens": 768,
+    "compact_history": true,
+    "deterministic_followups": false,
+    "periodic_refresh": true
+  },
+  "gaia2": {
+    "require_stall": true,
+    "maximum_fast_steps": 3
+  },
+  "alfworld_local": {
+    "minimum_probability": 0.9,
+    "minimum_margin": 0.25,
+    "maximum_fast_steps": 3
+  }
+}

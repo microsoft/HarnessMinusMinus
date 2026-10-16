@@ -1,14 +1,26 @@
-# Project
+# AgentMinusMinus
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+Agent controllers for reducing repeated language-model reasoning through supported decisions and guarded native execution.
 
-As the maintainer of this project, please make a few updates:
+The complete CHISEL Python package, integration documentation, source mappings, synthetic tests, and publication checks are in [CHISEL](CHISEL/README.md).
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+## Quick start
+
+```bash
+git clone git@github.com:microsoft/AgentMinusMinus.git
+cd AgentMinusMinus/CHISEL
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e '.[dev]'
+python tools/check_release.py
+python -m pytest -q
+```
+
+Install Node.js 22 or later for the optional native bank bridge and its tests. Tests use synthetic inputs and mocked responses.
+
+## License
+
+The repository template retains its MIT [license](LICENSE). The CHISEL component is distributed under [Apache-2.0](CHISEL/LICENSE), with its original notices and source mappings retained.
 
 ## Contributing
 
