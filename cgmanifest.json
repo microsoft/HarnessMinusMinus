@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json.schemastore.org/component-detection-manifest.json",
+  "version": 1,
+  "registrations": [
+    {
+      "component": {
+        "type": "pip",
+        "pip": {
+          "name": "pytest",
+          "version": "8.3.5"
+        }
+      },
+      "developmentDependency": true,
+      "detectedComponentLocations": ["pyproject.toml"]
+    },
+    {
+      "component": {
+        "type": "pip",
+        "pip": {
+          "name": "build",
+          "version": "1.2.2.post1"
+        }
+      },
+      "developmentDependency": true,
+      "detectedComponentLocations": ["pyproject.toml"]
+    },
+    {
+      "component": {
+        "type": "pip",
+        "pip": {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        }
+      },
+      "developmentDependency": true,
+      "detectedComponentLocations": ["pyproject.toml"]
+    }
+  ]
+}
