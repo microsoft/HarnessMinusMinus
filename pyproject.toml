@@ -3,28 +3,38 @@ requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "chisel-jev"
+name = "harnessmm"
 version = "0.2.0"
-description = "ReHO: optimizing agent execution control flow through guarded decision reuse"
+description = "Guarded decision reuse and recursive self-improvement for agent harness token efficiency"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.15"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
-authors = [{name = "AgentMinusMinus contributors"}]
+authors = [{name = "Yuhua Jiang"}]
 dependencies = []
-
-[project.optional-dependencies]
-dev = ["pytest==9.0.3", "build==1.2.2.post1", "jsonschema==4.26.0"]
+keywords = ["agents", "harness", "decision-reuse", "token-efficiency", "recursive-self-improvement"]
 
 [project.urls]
-Repository = "https://github.com/microsoft/AgentMinusMinus"
+Repository = "https://github.com/microsoft/HarnessMinusMinus"
+Issues = "https://github.com/microsoft/HarnessMinusMinus/issues"
+
+[project.optional-dependencies]
+dev = ["pytest==9.0.3", "jsonschema==4.26.0", "build==1.2.2.post1"]
+analysis = ["numpy>=2,<3"]
 
 [tool.setuptools.packages.find]
-include = ["chisel*"]
-
-[tool.pytest.ini_options]
-addopts = "-ra"
-testpaths = ["tests"]
+where = [".", "legacy/reho"]
+include = ["chisel*", "harnessmm*", "phiagent", "integrations*", "scripts*"]
+exclude = ["tests*", "examples*", "docs*"]
+namespaces = true
 
 [tool.setuptools.package-data]
 "chisel.harness" = ["contracts/*.mjs"]
+"integrations.deepseek_harness" = ["*.mjs"]
+"integrations" = ["README.md"]
+"integrations.codex_harness" = ["README.md"]
+"integrations.baseline_harness" = ["README.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

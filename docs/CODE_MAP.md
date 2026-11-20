@@ -1,0 +1,31 @@
+# Paper concepts and implementation
+
+| Concept | Entry point | Role |
+| --- | --- | --- |
+| Baseline harness | `integrations/baseline_harness/visual.py` | Fresh metered screenshot decision using the extracted B0 literal action contract |
+| Codex public integration | `integrations/codex_harness/__init__.py` | Re-export the existing native runtime, bank boundaries and RSI controller |
+| EDG authoring and validation | `integrations/deepseek_harness/cot_jev.mjs` | `planInstruction`, `parseBank`, structured authoring and typed bank contracts |
+| HumanEval archived SDK authoring | `reproduction/humaneval_v23/structured_bank_author.mjs` | Frozen v23 `author_bank` adapter and companion JavaScript, separate from current integration fixes |
+| GDR | `integrations/deepseek_harness/sar_v2.mjs` | `PersistentBank`, `localGuard` and `ExecutableSubdag` retain and activate prior decisions |
+| CCS | `ExecutableSubdag.stream` and `ExecutableSubdag.observeTool` | Replace a registered slow boundary, then bind the exact action and native receipt in a certificate |
+| Native action selection | `cot_jev.mjs`, `jev_v2.mjs`, `sar_admission.mjs` | Versioned deterministic and model-assisted selection with abstention |
+| Codex native MCP integration | `harnessmm/harness/codex_native_app_bank.py` | `NativeBankBoundary` with native execution, audit and metered selector callbacks |
+| Codex terminal integration | `harnessmm/harness/codex_terminal_bank.py` | Native Responses history, terminal bank boundary and metered provider integration |
+| Shared RSI lifecycle | `harnessmm/harness/codex_chisel.py` | Training, protected validation selection, source freeze and sealed testing |
+| DeepSeek RSI adapter | `harnessmm/harness/deepseek_chisel.py` | Preserve the shared lifecycle while adapting the official SDK request fields |
+| Cost-aware RSI | `harnessmm/harness/industrial_efficiency_rsi.py` | Candidate objective and complete quality/cost selection |
+| Train-only industrial RSI | `harnessmm/harness/industrial_train_rsi.py` | Procedural instruction optimization and cross-fitted routing |
+| Grouped partition | `harnessmm/harness/benchmark_partition.py` | Outcome-independent 20%/20%/60% split before optimization and repetitions |
+| Complete token accounting | `harnessmm/evaluation/deployment_token_accounting.py` | Aggregate declared physical calls without dropping unsuccessful executions |
+
+Instruction optimization, context handling and finalization rules are companion
+configurations. To identify a callback substitution, look up its native receipt and callback ID
+in the run's substitution certificates.
+
+## Naming
+
+The project and Python package are named HarnessMM and `harnessmm`. The
+legacy `phiagent` namespace remains an import alias.
+`ChiselConfig`/`CodexChiselController` class names, schema strings, event names
+and the `<CHISEL_PLAN>` envelope keep their existing contracts. `SAR` and `Jev` occur
+in implementation names for graph execution and selection. For each benchmark run, record the modules, protocol version, model and configuration.

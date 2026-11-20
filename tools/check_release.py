@@ -15,7 +15,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 PATTERNS = {
     "credential format": re.compile(
-        r"(?:sk-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}"
+        r"(?:(?<![A-Za-z0-9])sk-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}"
         r"|AKIA[0-9A-Z]{16}|-----BEGIN (?:[A-Z]+ )?PRIVATE KEY-----)"
     ),
     "embedded credential": re.compile(
@@ -34,7 +34,7 @@ PATTERNS = {
 }
 EMAIL = re.compile(r"[A-Za-z0-9_.+-]+@([A-Za-z0-9.-]+\.[A-Za-z]{2,})")
 SAFE_EMAIL_DOMAINS = {"example.com", "example.org", "example.net", "users.noreply.github.com"}
-SUFFIXES = {".py", ".mjs", ".md", ".json", ".toml", ".cfg", ".in", ".yml", ".yaml", ".txt", ".csv"}
+SUFFIXES = {".py", ".mjs", ".js", ".ts", ".bib", ".svg", ".png", ".gif", ".md", ".json", ".toml", ".cfg", ".in", ".yml", ".yaml", ".txt", ".csv"}
 BARE_FILES = {"LICENSE", "NOTICE", "PKG-INFO", "WHEEL", "METADATA", "RECORD", "AGENTS.md", ".gitignore", "LICENSE-MICROSOFT"}
 BLOCKED_PARTS = {".ssh", ".aws", ".azure", ".venv", "credentials", "secrets", "__pycache__"}
 
@@ -55,8 +55,42 @@ def check_name(name, errors):
         errors.append(f"{name}: unexpected public file type")
 
 
+# These published figures were reviewed as binary assets. A new image needs review.
+FIGURE_HASHES = {
+    "ablation.png": "5a5e2b99f4a82c78af6b8c69a2b846db256da04c7693f4cf8c574b39858ec7ff",
+    "benchmark-results.png": "56b06a6bf0ecfa32a3714ad8d6a67f55426b5cbab3e092e6a95d9143456c4c08",
+    "competitor-results.png": "7814f0cda9f4aa2b72806ac898511c1c140e51d67466e23b06bc74b6a430353b",
+    "guarded-reuse.gif": "e32930a047583552f8dc1267503e693ea3460179a6d941fece10d29564b4f797",
+    "guarded-reuse.png": "9ed0770e8a721c8e6a847f082443bc3a4d47a10e3edc4b3445b44cbb7bfa8fe4",
+    "overview.png": "6a7b4b2965feb6cc1de458b762b4542ac37fee904526b50a755e551926c18ff1",
+    "paper-figure-1.png": "9c13a7072429132ef2f3ad23b2e434d97e9b99a051349a206c198a59878b2e7e",
+}
+
+
+def public_example(name, label, match):
+    path = PurePosixPath(name)
+    if label == "private network address":
+        # Docker's default bridge gateway and its documented private address ranges.
+        return match[0] in {"172." + "17.0.1", "172." + "16.0.0", "192." + "168.0.0"} and path.suffix == ".py"
+    if label == "embedded credential":
+        if match[1] == "EMPTY":
+            return "scripts" in path.parts
+        return ("tests" in path.parts or "test" in path.parts) and match[1] in {
+            "fake", "synthetic", "synthetic-not-a-credential", "hmm-test", "y", "z"
+        }
+    if label == "authorization value":
+        return path.name == "deepseek_harness_plugin.test.mjs" and match[0] == "Bearer " + "SYNTHETIC_BRIDGE_SECRET"
+    return False
+
+
 def check_bytes(name, data, errors):
     check_name(name, errors)
+    path = PurePosixPath(name)
+    if path.suffix in {".gif", ".png"}:
+        if (path.parent.parts[-3:] != ("docs", "assets", "readme")
+                or FIGURE_HASHES.get(path.name) != hashlib.sha256(data).hexdigest()):
+            errors.append(f"{name}: unreviewed binary asset")
+        return
     try:
         text = data.decode("utf-8")
     except UnicodeDecodeError:
@@ -64,7 +98,7 @@ def check_bytes(name, data, errors):
         return
     for number, line in enumerate(text.splitlines(), 1):
         for label, pattern in PATTERNS.items():
-            if pattern.search(line):
+            if any(not public_example(name, label, match) for match in pattern.finditer(line)):
                 errors.append(f"{name}:{number}: {label}")
         for match in EMAIL.finditer(line.replace("git@github.com:", "")):
             if match[1].lower() not in SAFE_EMAIL_DOMAINS and match[0] != "opencode@microsoft.com":
@@ -87,11 +121,11 @@ def check_source(errors):
             errors.append(f"{name}: missing published file")
     manifest = json.loads((ROOT / "SOURCE_MANIFEST.json").read_text())
     for row in manifest["files"]:
-        name = row["destination"]
+        name = row["path"]
         if name not in files:
             errors.append(f"{name}: source mapping is outside the release")
             continue
-        if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != row["release_sha256"]:
+        if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != row["published_sha256"]:
             errors.append(f"{name}: release hash differs from source manifest")
         if not re.fullmatch(r"[0-9a-f]{64}", row["source_sha256"]):
             errors.append(f"{name}: invalid source hash")

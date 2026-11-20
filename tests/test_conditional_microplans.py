@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from chisel.learning import conditional_microplans as micro
+from harnessmm.learning import conditional_microplans as micro
 
 
 FIRST = "select alpha"
@@ -125,11 +125,14 @@ def test_generation_revision_changes_only_schema_descriptions_not_original_const
 def test_generation_revision_leaves_parser_state_helpers_and_constants_unchanged():
     source = Path(micro.__file__).read_text()
     tree = ast.parse(source)
-    unchanged = "\n\n".join(
-        ast.get_source_segment(source, node) for node in tree.body
+    unchanged = [
+        node for node in tree.body
         if not isinstance(node, ast.FunctionDef) or node.name not in {"response_schema", "prompt_contract"}
-    )
-    fingerprint = hashlib.sha256(unchanged.encode()).hexdigest()
+    ]
+    # AST fields and ast.dump defaults differ across Python versions. Preserve
+    # the same frozen code boundary using its original source segments instead.
+    payload = "\n\n".join(ast.get_source_segment(source, node) for node in unchanged)
+    fingerprint = hashlib.sha256(payload.encode()).hexdigest()
     assert fingerprint == "65f22ad1de0c7cfe6a7a5544d016286b8306d239bb426243fc493bb6df2ffff8"
 
 

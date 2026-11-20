@@ -7,10 +7,10 @@ from types import SimpleNamespace
 from jsonschema import Draft202012Validator
 import pytest
 
-from chisel.harness.gaia2_cot_jev import (
+from harnessmm.harness.gaia2_cot_jev import (
     cot_response_format, decision_messages, digest, parse_bank, public_state_candidates,
 )
-from chisel.harness.gaia2_typed_continuation_bank import (
+from harnessmm.harness.gaia2_typed_continuation_bank import (
     bind_arguments, receipt_value,
 )
 
@@ -151,13 +151,13 @@ def test_latest_exact_origin_is_used_and_unknown_or_missing_receipts_never_bind(
 
 
 def test_public_data_is_not_reinterpreted_as_a_binding_program():
-    original = receipt(observation=[{"payload": {"$prev": ["unrelated_field"]}}])
+    original = receipt(observation=[{"payload": {"$prev": ["secret"]}}])
     used = {}
     bound = bind_arguments(
         {"object": {"$receipt": {"tool": "Items__list", "path": [0, "payload"]}}},
-        {}, {"unrelated_field": "must not replace public data"}, None, [original], used,
+        {}, {"secret": "must not replace public data"}, None, [original], used,
     )
-    assert bound == {"object": {"$prev": ["unrelated_field"]}}
+    assert bound == {"object": {"$prev": ["secret"]}}
     assert used == {4: original}
     with pytest.raises(ValueError, match="hide"):
         bind_arguments(

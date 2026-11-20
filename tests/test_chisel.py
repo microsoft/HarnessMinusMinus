@@ -1,10 +1,12 @@
-"""Extracted synthetic controller unit tests; no benchmark or provider calls."""
+from __future__ import annotations
+
 import pytest
 
-from chisel.learning.chisel import (
+from harnessmm.learning.chisel import (
     CalibrationCandidate,
     select_domain_policy,
 )
+
 
 def test_domain_shift_gate_selects_success_first_then_tokens() -> None:
     decision = select_domain_policy(
@@ -28,6 +30,7 @@ def test_domain_shift_gate_selects_success_first_then_tokens() -> None:
     assert decision.passed is True
     assert decision.token_saving_vs_reference > 0.17
 
+
 def test_domain_shift_gate_fails_closed_on_external_tie() -> None:
     decision = select_domain_policy(
         [CalibrationCandidate("candidate", 10, 80, 0.0)],
@@ -40,6 +43,7 @@ def test_domain_shift_gate_fails_closed_on_external_tie() -> None:
 
     assert decision.passed is False
     assert "strictly_best_external" in decision.reason
+
 
 def test_domain_shift_gate_rejects_duplicate_candidates() -> None:
     with pytest.raises(ValueError, match="invalid"):

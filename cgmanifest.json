@@ -7,11 +7,11 @@
         "type": "pip",
         "pip": {
           "name": "pytest",
-          "version": "8.3.5"
+          "version": "9.0.3"
         }
       },
       "developmentDependency": true,
-      "detectedComponentLocations": ["pyproject.toml"]
+      "detectedComponentLocations": ["pyproject.toml", "legacy/reho/pyproject.toml"]
     },
     {
       "component": {
@@ -22,7 +22,7 @@
         }
       },
       "developmentDependency": true,
-      "detectedComponentLocations": ["pyproject.toml"]
+      "detectedComponentLocations": ["pyproject.toml", "legacy/reho/pyproject.toml"]
     },
     {
       "component": {
@@ -33,7 +33,7 @@
         }
       },
       "developmentDependency": true,
-      "detectedComponentLocations": ["pyproject.toml"]
+      "detectedComponentLocations": ["pyproject.toml", "legacy/reho/pyproject.toml"]
     }
   ]
 }

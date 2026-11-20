@@ -1,0 +1,844 @@
+{
+  "schema_version": 2,
+  "source_project": "PhiAgent-0",
+  "source_commit": "a468ee05b5c842d0fcd6d8af241f7b312c2e42f3",
+  "source_working_tree": "modified; source_sha256 records the actual bytes, not just HEAD",
+  "scope": "Provider-independent controllers, public action banks, context codecs, rule evolution, and synthetic tests; deployment, datasets, credentials and results excluded.",
+  "files": [
+    {
+      "source": "LICENSE",
+      "destination": "LICENSE",
+      "source_sha256": "88417a37a4ca2852f9546e964e2de927a31606e4d4fe5f25e1df5fd7560f2611",
+      "release_sha256": "d6af7635e0ff35fccb0f2c24d31dd89db0fdcb4e49ec2f0ec3d8261307d90786",
+      "changes": [
+        "Included full Apache License 2.0 text from apache.org; retained original copyright notice"
+      ]
+    },
+    {
+      "source": "scripts/jev_searchqa.py",
+      "destination": "chisel/adapters/qa.py",
+      "source_sha256": "c3eb49345d40824231c7b40b161265500a41cd2b48deb73aa7a893a475830595",
+      "release_sha256": "486afe34255b6506982a4c20974e0b80ba6280ada4e2ac010a0a8270208bf0ab",
+      "changes": [
+        "Extracted solve() with its original request accounting; benchmark runner and aggregation omitted",
+        "Import namespace relocated"
+      ]
+    },
+    {
+      "source": "phiagent/harness/codex_native_app_bank.py",
+      "destination": "chisel/harness/codex_native_app_bank.py",
+      "source_sha256": "6db62f0e0549b8bf751b1480f12c1f393516ede1bb98d1306dcc3fe4e4e522ee",
+      "release_sha256": "8f6e398df220c455fe2ee477dc2072d026a3fa3b9744c23a4f9c346c68e9394b",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers",
+        "Resolved packaged JavaScript contracts relative to the installed module"
+      ]
+    },
+    {
+      "source": "integrations/deepseek_harness/codex_bank_contract.mjs",
+      "destination": "chisel/harness/contracts/codex_bank_contract.mjs",
+      "source_sha256": "56ae8a208f6d2d0775fdfa53b8cedd3eb43563b6b9f237a907076f777ad30742",
+      "release_sha256": "56ae8a208f6d2d0775fdfa53b8cedd3eb43563b6b9f237a907076f777ad30742",
+      "changes": [
+        "Packaged pure native action-bank contract; source bytes preserved"
+      ]
+    },
+    {
+      "source": "integrations/deepseek_harness/cot_jev.mjs",
+      "destination": "chisel/harness/contracts/cot_jev.mjs",
+      "source_sha256": "94a2b675b62927afb183d89541b97c53b4e1aa73d586a45602ed0f311f6f0a63",
+      "release_sha256": "94a2b675b62927afb183d89541b97c53b4e1aa73d586a45602ed0f311f6f0a63",
+      "changes": [
+        "Packaged pure native action-bank contract; source bytes preserved"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_cot_jev.py",
+      "destination": "chisel/harness/gaia2_cot_jev.py",
+      "source_sha256": "9f26e905a24fa21a599cc762d740e655f38dec04798b5e0da50713b519bf5e23",
+      "release_sha256": "fd0a389b0fc227489d824f58906f16c9a1f5b838a3971cce0f53b764b0de0356",
+      "changes": [
+        "Selected pure definitions; excluded deployment and campaign orchestration",
+        "Excluded symbols: install_adapter",
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_dual_rsi.py",
+      "destination": "chisel/harness/gaia2_dual_rsi.py",
+      "source_sha256": "a0bab38e91d0457504cc236b8ab0be257a82ca5c948dbaaf4da9c0cdf98ad9fd",
+      "release_sha256": "3d5a710fdff583ece5b45f37ccdb7cf91e115dc1bce8e8138fe31d8d8e5d0337",
+      "changes": [
+        "Selected pure definitions; excluded deployment and campaign orchestration",
+        "Selected symbols: USAGE_FIELDS, well_typed, combine_usage",
+        "Relocated Python imports to chisel; retained protocol identifiers",
+        "Described extracted helpers in module docstring"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_fast_public_contract_v12.py",
+      "destination": "chisel/harness/gaia2_fast_public_contract_v12.py",
+      "source_sha256": "7817afe8def097e42103c10aa7f19b8263eb4e56990c2c1304bd712d5d642398",
+      "release_sha256": "7817afe8def097e42103c10aa7f19b8263eb4e56990c2c1304bd712d5d642398",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_fused_bank_v16.py",
+      "destination": "chisel/harness/gaia2_fused_bank_v16.py",
+      "source_sha256": "6b1483815b80b6b7859653bc8b4d3857cb8dd225ed632577c316d7b8703eb9cc",
+      "release_sha256": "b3238c3894d5d2351700a9f346c86e19bad7d65fcbf643fca76a5b079386a4b3",
+      "changes": [
+        "Extracted exact public message projection; excluded native_prompt benchmark adapter"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_jev.py",
+      "destination": "chisel/harness/gaia2_jev.py",
+      "source_sha256": "9635298c45fee68e047ca3c6290952f78aea934fefdc70f2090806b96e7c48ef",
+      "release_sha256": "199645fef3500e9578cc72eaaa93452a6e4679ea9fd827af5b856e66710d1882",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_public_context_codec_v14.py",
+      "destination": "chisel/harness/gaia2_public_context_codec_v14.py",
+      "source_sha256": "2fe02d8b99ec258687ae21df0824ab2079f0b4160cde9d03755c311628d53a14",
+      "release_sha256": "2fe02d8b99ec258687ae21df0824ab2079f0b4160cde9d03755c311628d53a14",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_public_literal_table.py",
+      "destination": "chisel/harness/gaia2_public_literal_table.py",
+      "source_sha256": "51821fd09b5dae8eabcde9698d5139035e9849cd07b7535ad6cad4ff05665e85",
+      "release_sha256": "3feb3e6245e70103f26f08358857000c68d6c3cd35221822dd0544ba465b46df",
+      "changes": [
+        "Selected pure definitions; excluded deployment and campaign orchestration",
+        "Selected symbols: UnsupportedLiteral, encode_literal, decode_literal",
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_public_progress.py",
+      "destination": "chisel/harness/gaia2_public_progress.py",
+      "source_sha256": "c5359c8374294b866a65965548a0d149588b4a4afe8bb12dcd6487bb74ff7294",
+      "release_sha256": "04750d8beec0d47858d533feec7c0b4b6a1db8600de21f2ea68f639287f6d26f",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_state_progress.py",
+      "destination": "chisel/harness/gaia2_state_progress.py",
+      "source_sha256": "c3af6b719a97ab0d253d2fbf39d8520d04e8f9187cfdbe2786fb2d0a312dbe9e",
+      "release_sha256": "7b25f721e1c7ee404acaaeebee883540b6fe1c9fabda58542ed43808a2f20cd6",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_structured_bank_v9.py",
+      "destination": "chisel/harness/gaia2_structured_bank_v9.py",
+      "source_sha256": "416b59cb546a70f7b9d9c31487430c0b216fb62e9001f1d57b3f5d796f11e368",
+      "release_sha256": "99b9f4eabb3e2f9afcb3a9ede9b03eb7f12b11d29faf135c2a5a75f240f28efe",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/harness/gaia2_typed_continuation_bank.py",
+      "destination": "chisel/harness/gaia2_typed_continuation_bank.py",
+      "source_sha256": "3e8384d9d95f30a0deb4b57b761ca3d638e4e4ea3086a237a8f3fa3b68c28e53",
+      "release_sha256": "9cf49a70017f1c06f15c71c0d92f613833035c1e35aef0e04f4b4b6fbd2ce28d",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "scripts/run_gaia2_jev.py",
+      "destination": "chisel/harness/gaia2_usage.py",
+      "source_sha256": "02231a9af3320c55858888847d6145cc26d276ca41877477275b8f9683f7414a",
+      "release_sha256": "df6adce17823d2c7a287128d4a0a43a0e6fbeb3442ab4e77f22b585b54ecf73b",
+      "changes": [
+        "Selected pure definitions; excluded deployment and campaign orchestration",
+        "Selected symbols: USAGE_FIELDS, native_usage, native_response_text",
+        "Relocated Python imports to chisel; retained protocol identifiers",
+        "Retained only re and future annotations imports",
+        "Described extracted helpers in module docstring"
+      ]
+    },
+    {
+      "source": "phiagent/harness/jev_interleave.py",
+      "destination": "chisel/harness/jev_interleave.py",
+      "source_sha256": "f007fdb0cb6d41fb0d163b8effd0b4761eeac2fdc24e758ff5d9e664b4072190",
+      "release_sha256": "f007fdb0cb6d41fb0d163b8effd0b4761eeac2fdc24e758ff5d9e664b4072190",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "scripts/terminal_jev.py",
+      "destination": "chisel/harness/terminal_jev.py",
+      "source_sha256": "c9480c59160d65761f0621eb90162cfdf8d52700d3cb4808998ee897944f9c52",
+      "release_sha256": "c9480c59160d65761f0621eb90162cfdf8d52700d3cb4808998ee897944f9c52",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/harness/typed_decisions.py",
+      "destination": "chisel/harness/typed_decisions.py",
+      "source_sha256": "1958c4d1e587a74c4dece4bde593fd8baf01cb3e5ed9ec4429b8ab07015964a4",
+      "release_sha256": "1958c4d1e587a74c4dece4bde593fd8baf01cb3e5ed9ec4429b8ab07015964a4",
+      "changes": [
+        "Path relocation only"
+      ]
+    },
+    {
+      "source": "phiagent/learning/alfworld_autosaddler_pfn.py",
+      "destination": "chisel/learning/alfworld_autosaddler_pfn.py",
+      "source_sha256": "b6ceb06b766b152b5daf4ea42a48b945ef45b8aedc4400a1dc4adf66e7514d19",
+      "release_sha256": "b6ceb06b766b152b5daf4ea42a48b945ef45b8aedc4400a1dc4adf66e7514d19",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/alfworld_jev.py",
+      "destination": "chisel/learning/alfworld_jev.py",
+      "source_sha256": "a45d08b926035eb17ea297d301e87825fcd3027f403135c70446a7ca3c37d84b",
+      "release_sha256": "530c1a8706f5502da22f36092841d6624ddaa8897ec3d8d8aef9cd34d46459b4",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/alfworld_modular_rsi.py",
+      "destination": "chisel/learning/alfworld_modular_rsi.py",
+      "source_sha256": "45812deb090a6e634d20199de0473be5b0eae18364337ecac1ba893662d442ca",
+      "release_sha256": "ce456c67bcea1d42e82bc7a56975c6f3fe62e0dbf55784883b578fc117936599",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "scripts/alfworld_public_progress.py",
+      "destination": "chisel/learning/alfworld_public_progress.py",
+      "source_sha256": "6c6d7c18a3fc6d3c135d1978df76ae78a6f65e7a5d102a1bc451992016bb3469",
+      "release_sha256": "56542d0eece4d073459462a8336b3d971ef4ce2abf05becede7d15faf46c1031",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/chisel.py",
+      "destination": "chisel/learning/chisel.py",
+      "source_sha256": "a35c91dc624b8346461cf73b42753365552995721428626766811a51ea6eede4",
+      "release_sha256": "a35c91dc624b8346461cf73b42753365552995721428626766811a51ea6eede4",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/compact_qa_contracts.py",
+      "destination": "chisel/learning/compact_qa_contracts.py",
+      "source_sha256": "5a0c459e13becc001f61b2680da6a74f29519baf18c87f8e395a95ae24c56a11",
+      "release_sha256": "5a0c459e13becc001f61b2680da6a74f29519baf18c87f8e395a95ae24c56a11",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/conditional_microplans.py",
+      "destination": "chisel/learning/conditional_microplans.py",
+      "source_sha256": "55bc11a1d74c3c460e1ba05062f08f5065d52bcd867d697494d389ba2f599db9",
+      "release_sha256": "55bc11a1d74c3c460e1ba05062f08f5065d52bcd867d697494d389ba2f599db9",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/counterfactual_invocation.py",
+      "destination": "chisel/learning/counterfactual_invocation.py",
+      "source_sha256": "e477b2006d116b7f7f87f0776f8cf57668f8509ecd4a5faef46507bb4a462b13",
+      "release_sha256": "e477b2006d116b7f7f87f0776f8cf57668f8509ecd4a5faef46507bb4a462b13",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/counterfactual_repair.py",
+      "destination": "chisel/learning/counterfactual_repair.py",
+      "source_sha256": "ae636959879fe7b950db8a74114cf7ff565ae210525283b87ea677a0a19b62f2",
+      "release_sha256": "df5fd81324efcf236509dcfeb3427ee98e0950e9690f1765a00eccf124f9eaf1",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/entry_guard_refinement.py",
+      "destination": "chisel/learning/entry_guard_refinement.py",
+      "source_sha256": "2786d2c449cdb63878e6d06448821924021c0a960bc46b5318e5206dce257bc2",
+      "release_sha256": "769999cd827d150e6dd4e54f26caf51e5032f93d5f67cf8a73bd98425c2bf818",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/fragment_contracts.py",
+      "destination": "chisel/learning/fragment_contracts.py",
+      "source_sha256": "3e0ce0db421d574bae15046d95734aaff778cd06c14b326e1be7db760678a02b",
+      "release_sha256": "09051f88fe938334e73b774504ca0cc1f26b11f91c3fad6f15e083bf6902209e",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/grounded_continuations.py",
+      "destination": "chisel/learning/grounded_continuations.py",
+      "source_sha256": "bb1c68ba42e388134f7442c05bafed690d280c985eedc1a2c3dbf423971b6373",
+      "release_sha256": "b5d405f1330cfd1ec2bb53b412909cf28368fb968a24c5ba09dd35e5fcc9b75e",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/observed_feedback_plans.py",
+      "destination": "chisel/learning/observed_feedback_plans.py",
+      "source_sha256": "60699b9ebc215bd7ac29fbefa6d3c776caeedc72c97d17b23c125e672f506ea7",
+      "release_sha256": "60699b9ebc215bd7ac29fbefa6d3c776caeedc72c97d17b23c125e672f506ea7",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/public_evidence_retention.py",
+      "destination": "chisel/learning/public_evidence_retention.py",
+      "source_sha256": "423d971932c7f7fdb30c141a165976aa9236cde06c8ae17d3bdf90362615f116",
+      "release_sha256": "423d971932c7f7fdb30c141a165976aa9236cde06c8ae17d3bdf90362615f116",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/public_recurrence.py",
+      "destination": "chisel/learning/public_recurrence.py",
+      "source_sha256": "68894723ab240f6c95d3dbf4c43fec43a2717f288aacb7df84a394aae6f96dff",
+      "release_sha256": "68894723ab240f6c95d3dbf4c43fec43a2717f288aacb7df84a394aae6f96dff",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/qa_context_evidence.py",
+      "destination": "chisel/learning/qa_context_evidence.py",
+      "source_sha256": "14269253b6118b28cc8f9532eef26b5be144ec4edfc4f77892909c78b1a14947",
+      "release_sha256": "250ad42c13ff863d37198080bb83798e7dfe09304dad0e7cd9121e8489d2df79",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/qa_meta_rsi.py",
+      "destination": "chisel/learning/qa_meta_rsi.py",
+      "source_sha256": "3a3120187171df3b0e659123c7c51141ad20e55e984a0a00a4a3be2730ce0127",
+      "release_sha256": "3a3120187171df3b0e659123c7c51141ad20e55e984a0a00a4a3be2730ce0127",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/qa_rule_compaction.py",
+      "destination": "chisel/learning/qa_rule_compaction.py",
+      "source_sha256": "f28f2b796dd79e6f31ae712f5297796c9233a2aad67dff9684b51b459be1e007",
+      "release_sha256": "f28f2b796dd79e6f31ae712f5297796c9233a2aad67dff9684b51b459be1e007",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/qa_rule_module_interventions.py",
+      "destination": "chisel/learning/qa_rule_module_interventions.py",
+      "source_sha256": "0417a6be4ddc2f464a2ddc4646cd3be3817a66f51a71b0b93f6197d15f193186",
+      "release_sha256": "0417a6be4ddc2f464a2ddc4646cd3be3817a66f51a71b0b93f6197d15f193186",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/qa_single_module_rsi.py",
+      "destination": "chisel/learning/qa_single_module_rsi.py",
+      "source_sha256": "9eb85e747809138d10fc6c89db0e42342273333e1cb02d318d1ad419dd01f7a7",
+      "release_sha256": "f259d9652d982aff2c5abf8061a1edb852f27ce6eb37f0631093b1844743b349",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/qa_typed_recovery.py",
+      "destination": "chisel/learning/qa_typed_recovery.py",
+      "source_sha256": "8f6fc77408512e30f13a79d1b550111055b88059417ecd76c670322d4b7fb228",
+      "release_sha256": "1beb4438fd3980f5536561d8a7830842580058e6ff592fe2aa7451da8a598fe5",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/residual_programs.py",
+      "destination": "chisel/learning/residual_programs.py",
+      "source_sha256": "3dfd5930d3e71b31a91af32a34b2bfa6f06400977ce5d503c1c2aab5391a311e",
+      "release_sha256": "37ce908aa647f0c010bbdc1b586a37bcdaceb1df0639336617fd18ddd4ddce9d",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/learning/sparse_retrieval.py",
+      "destination": "chisel/learning/sparse_retrieval.py",
+      "source_sha256": "881b6a744bfc9c174dee803dad8c7eb5ddb4d139d96b2d6caeace37b05f1c3b2",
+      "release_sha256": "881b6a744bfc9c174dee803dad8c7eb5ddb4d139d96b2d6caeace37b05f1c3b2",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/stage_aware_adm.py",
+      "destination": "chisel/learning/stage_aware_adm.py",
+      "source_sha256": "0fea82dd5fb6030d527465cf085d3ac01c1a01f4f952620970597223bd3987ed",
+      "release_sha256": "0fea82dd5fb6030d527465cf085d3ac01c1a01f4f952620970597223bd3987ed",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/learning/supported_local_decision.py",
+      "destination": "chisel/learning/supported_local_decision.py",
+      "source_sha256": "470e5e238c1a0ac299dcf000b250586b35d2642bf6b0d038100422b8a3729452",
+      "release_sha256": "470e5e238c1a0ac299dcf000b250586b35d2642bf6b0d038100422b8a3729452",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "phiagent/sb2_protocol/jev_recovery.py",
+      "destination": "chisel/sb2_protocol/jev_recovery.py",
+      "source_sha256": "9a8fd5c24f2fcef4295e2b4b3ac265a1e6a0d26e328321c89f7381428007d86b",
+      "release_sha256": "9a8fd5c24f2fcef4295e2b4b3ac265a1e6a0d26e328321c89f7381428007d86b",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "phiagent/sb2_protocol/spec.py",
+      "destination": "chisel/sb2_protocol/spec.py",
+      "source_sha256": "f3e00dd18fcbaa173f3064329657d7a194f3b31d5cfa535e6397eb9912e3d160",
+      "release_sha256": "f3e00dd18fcbaa173f3064329657d7a194f3b31d5cfa535e6397eb9912e3d160",
+      "changes": [
+        "Python import namespace relocated to chisel; protocol identifiers preserved"
+      ]
+    },
+    {
+      "source": "tests/test_alfworld_jev.py",
+      "destination": "tests/test_alfworld_jev.py",
+      "source_sha256": "8e57e20bf1a90cfe312cba16bb466a84e99f8a2e9b440b9584d260e65a81882c",
+      "release_sha256": "53ff913381ce3f9b2f94c1915d3cfdb8b5189fd4e8a943f2666ebc7ec09c2e80",
+      "changes": [
+        "Extracted provider-free controller tests; campaign-dependent tests excluded",
+        "Python imports relocated",
+        {
+          "retained": [
+            "local_response",
+            "RuleMemoryTests.test_stage_retrieval_keeps_exact_source_spans_and_guardrails",
+            "RuleMemoryTests.test_memory_does_not_invent_missing_rules_or_accept_unknown_stage",
+            "RuleMemoryTests.test_search_and_ambiguous_targets_skip_discriminator",
+            "RuleMemoryTests.test_transform_prerequisite_comes_from_public_feedback_not_action_text",
+            "RuleMemoryTests.test_typed_memory_request_keeps_all_options_and_only_retrieved_rules",
+            "RuleMemoryTests.test_temperature_updates_replace_incompatible_public_state",
+            "RuleMemoryTests.test_hidden_fields_and_unknown_transitions_cannot_establish_state",
+            "TypedProgressTests.choices",
+            "TypedProgressTests.test_repeated_search_excludes_only_publicly_inspected_places",
+            "TypedProgressTests.test_known_target_source_beats_new_search",
+            "TypedProgressTests.test_explicit_transform_commits_state_and_stops_reheating",
+            "TypedProgressTests.test_finite_choices_cannot_invent_actions_or_use_hidden_rewards",
+            "TypedProgressTests.test_unsupported_goals_abstain_without_inventing_state",
+            "LocalDecisionTests.payload",
+            "LocalDecisionTests.test_same_model_typed_decision_uses_provider_logprobs_not_self_report",
+            "LocalDecisionTests.test_uncertainty_or_abstention_reuses_cot",
+            "LocalDecisionTests.test_missing_logprobs_or_incomplete_support_is_not_accepted",
+            "LocalDecisionTests.test_unnormalized_native_scores_are_charged_and_fall_back_without_rescaling",
+            "LocalDecisionTests.test_vocabulary_scores_outside_legal_labels_force_cot_without_normalizing",
+            "LocalDecisionTests.test_wrong_model_multitoken_or_nan_cannot_qualify",
+            "LocalDecisionTests.test_large_legal_action_inventory_cannot_be_silently_shortlisted"
+          ]
+        },
+        "Removed unused campaign imports; retained required synthetic fixtures"
+      ]
+    },
+    {
+      "source": "tests/test_chisel.py",
+      "destination": "tests/test_chisel.py",
+      "source_sha256": "8e4d29a77d89ea6392c0e007d91c7e4e3d2e6d07a428c31c410bc7c5bc2a4cae",
+      "release_sha256": "aec1b5547cbef4183d2a2abff23914413a0041e2e02438214d06b0e541310b22",
+      "changes": [
+        "Extracted provider-free controller tests; campaign-dependent tests excluded",
+        "Python imports relocated",
+        {
+          "retained": [
+            "test_domain_shift_gate_selects_success_first_then_tokens",
+            "test_domain_shift_gate_fails_closed_on_external_tie",
+            "test_domain_shift_gate_rejects_duplicate_candidates"
+          ]
+        },
+        "Removed unused campaign imports; retained required synthetic fixtures"
+      ]
+    },
+    {
+      "source": "tests/test_codex_native_app_bank.py",
+      "destination": "tests/test_codex_native_app_bank.py",
+      "source_sha256": "5e97b9ef74ec34725d2ce8ecc9aebd5cef67af0f5efcf593685737b9d7194d17",
+      "release_sha256": "55960eeccab0797e4c15da5ca1508429b5da930b64aa5016c36386c38353a9ac",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers",
+        "Resolved packaged JavaScript contracts relative to the installed module"
+      ]
+    },
+    {
+      "source": "tests/test_conditional_microplans.py",
+      "destination": "tests/test_conditional_microplans.py",
+      "source_sha256": "8f23072ded3e3653e5b75d84624a78f0f4fb856e08a7fbdb48dd769aaddc28b6",
+      "release_sha256": "16f31ef43d3f85dc3c5ce0ccc907aac354b12702f8e19a7d8ef7d1003dd845a8",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers",
+        "Fingerprint non-generation source segments instead of version-dependent AST serialization"
+      ]
+    },
+    {
+      "source": "tests/test_counterfactual_invocation.py",
+      "destination": "tests/test_counterfactual_invocation.py",
+      "source_sha256": "d2bf02db60633940c73793fdc42f48bb5b959edf4ba7302be61f063fc64d7e06",
+      "release_sha256": "9bbdc35d3d1e0836567cbc778989ed3165354de70de0e4faa432fa4a784e0acf",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_entry_guard_refinement.py",
+      "destination": "tests/test_entry_guard_refinement.py",
+      "source_sha256": "a2cf7b7fb6664656a56448e55171a71394784ece6b93b8216fffb0a193695a7d",
+      "release_sha256": "81a834201ba7465b39e827624430b68278bfabadd5b46589edc66224c3c8da5c",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_fragment_contracts.py",
+      "destination": "tests/test_fragment_contracts.py",
+      "source_sha256": "67662c782b05813b6fd336ab2a118fe26e3475bd3f7da94e5da34d108164992e",
+      "release_sha256": "a1183eafd13a7552afcb65c75a9f1d32ff83a6a87b797aef808edeefcabb7b52",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_gaia2_cot_jev.py",
+      "destination": "tests/test_gaia2_cot_jev.py",
+      "source_sha256": "3f05bc7a92cdb615c3f98c7d1b8d8411b10797863401b3681810d93df78aabd2",
+      "release_sha256": "ffe0e4726661e618afad0bd54e0a3364c87f4f07bafeb2f51d2cdf1a53c78e6b",
+      "changes": [
+        "Selected pure definitions; excluded deployment and campaign orchestration",
+        "Excluded symbols: test_queue_counts_genuine_one_token_fast_commits, test_successor_replaces_only_the_frozen_settings_assignment",
+        "Relocated Python imports to chisel; retained protocol identifiers",
+        "Described scalar-identifier regression by its public behavior"
+      ]
+    },
+    {
+      "source": "tests/test_gaia2_jev.py",
+      "destination": "tests/test_gaia2_jev.py",
+      "source_sha256": "4bd23fabd1b794374e957daa48f4164c86da2d399015b129843ba2e38340f10f",
+      "release_sha256": "a92eac47bd8eb34c724091b193293f5bd76b2f91258640e44c0b8d1ef07842ce",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers",
+        "Excluded campaign ledger, cluster guards, and operational audit tests; retained pure controllers and response normalization tests"
+      ]
+    },
+    {
+      "source": "tests/test_gaia2_public_progress.py",
+      "destination": "tests/test_gaia2_public_progress.py",
+      "source_sha256": "3671cb22a50c9df72e1f72d260a8a7cbdba4f92a2cedcefabf99e6592c53c22d",
+      "release_sha256": "11b52553835fb649ba2d7bffa1d426e758ac856b849855d1f618d7b6522b0723",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_gaia2_state_progress.py",
+      "destination": "tests/test_gaia2_state_progress.py",
+      "source_sha256": "0eab7f5c365553afa2361493bae0d8329365038a352c5d1db8207802ab29dcd0",
+      "release_sha256": "0881e835dfe4df6f8c5038d737b739ff9b68d029158aa0df567023d230e30a3c",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_gaia2_structured_bank_v9.py",
+      "destination": "tests/test_gaia2_structured_bank_v9.py",
+      "source_sha256": "c1580c357022b26433d831b1d4449ffe1d6e6b408a2b970a29b8c7f8617744aa",
+      "release_sha256": "af126c8fa2ed83dc166140e94a718a2c11ee531606e2232b322f23bb50381b89",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_gaia2_typed_continuation_bank.py",
+      "destination": "tests/test_gaia2_typed_continuation_bank.py",
+      "source_sha256": "d124270ccd43ec324ea0377cd0da3b4df8e95320067bc9e95e2e599b07206f65",
+      "release_sha256": "afd71da52e3c510b7d8e869af26b2978612c6e6be1d0f2cc484c2ce814c73327",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers",
+        "Renamed a synthetic field to avoid credential-keyword false positives"
+      ]
+    },
+    {
+      "source": "tests/test_grounded_continuations.py",
+      "destination": "tests/test_grounded_continuations.py",
+      "source_sha256": "f48fff01d72d27a916a17e4e9b75ac6ccb69a548332c6cae0b4d22d3705ba93d",
+      "release_sha256": "27ffb4d314f0587cd63566eac4ea4960cfea5ae08f385189f443dfe2f3543f8c",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_observed_feedback_plans.py",
+      "destination": "tests/test_observed_feedback_plans.py",
+      "source_sha256": "f2c2962fdd98ca73cbe02905f3fa0c2aeede32c365d9a6008bffd65e3b629bd2",
+      "release_sha256": "2e79d95e87de72569a20a37c2be87004996832e75261dcce597c9e6837617ab8",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_solpi_qa_experiment.py",
+      "destination": "tests/test_qa_controllers.py",
+      "source_sha256": "aa123f334248f8ab75f0573fb8f69f3e56a312c1405a1400d6f92e5ca117be49",
+      "release_sha256": "aecd38009a5520f2f2709a7772897ff4701d1e80a2678e855fe81072c882c856",
+      "changes": [
+        "Extracted provider-free controller tests; campaign-dependent tests excluded",
+        "Python imports relocated",
+        {
+          "retained": [
+            "QuestionAnchoredRecoveryTests.test_requires_question_clues_in_two_answer_bearing_source_groups",
+            "QuestionAnchoredRecoveryTests.test_rejects_name_mentioned_without_the_requested_relation",
+            "QuestionAnchoredRecoveryTests.test_repeated_mentions_in_one_document_do_not_count_as_corroboration",
+            "QuestionAnchoredRecoveryTests.test_numeric_qualifier_and_original_invalid_contract_remain_guards",
+            "TypedRecoveryTests.test_source_rule_retrieval_preserves_normalization_and_source_bytes",
+            "TypedRecoveryTests.test_deterministic_public_support_does_not_certify_semantic_correctness",
+            "TypedRecoveryTests.test_native_two_action_decision_requires_complete_normalized_probabilities",
+            "TypedRecoveryTests.test_recovery_messages_do_not_treat_source_match_as_semantic_proof",
+            "TypedRecoveryTests.test_unsupported_or_invalid_drafts_restore_original_without_a_judge",
+            "TypedRecoveryTests.test_finite_recovery_choice_cannot_invent_an_answer_or_certify_correctness",
+            "TypedRecoveryTests.test_recovery_quality_floor_is_inclusive_73_34_and_retains_prior_cost_target",
+            "TypedProbabilityTests.test_reasoning_sentence_stop_preserves_alias_logits_and_full_usage",
+            "TypedProbabilityTests.test_label_alias_readout_includes_space_prefixed_probability_mass",
+            "TypedProbabilityTests.test_label_alias_readout_rejects_overlaps_missing_logits_and_generated_numbers",
+            "TypedProbabilityTests.test_reasoning_does_not_duplicate_an_observed_close_think_token",
+            "TypedProbabilityTests.test_cached_reasoning_is_bounded_and_charges_every_generated_and_forced_token",
+            "TypedProbabilityTests.test_no_reasoning_control_uses_one_forward_and_includes_handoff_cost",
+            "TypedProbabilityTests.test_reasoning_rejects_cache_replay_and_oversized_generation_budget",
+            "TypedProbabilityTests.tokenizer",
+            "TypedProbabilityTests.test_probabilities_come_from_logits_and_do_not_claim_calibration",
+            "TypedProbabilityTests.test_invalid_or_self_reported_probabilities_are_rejected",
+            "TypedProbabilityTests.test_single_forward_has_zero_decoding_and_charges_all_input",
+            "TypedProbabilityTests.test_invalid_mask_and_duplicate_choice_tokens_block_before_forward",
+            "ExactDocumentPackTests.test_budgeted_evidence_checks_complete_request_and_exact_spans",
+            "ExactDocumentPackTests.test_infeasible_request_budget_falls_back_without_empty_evidence",
+            "ExactDocumentPackTests.test_only_exact_repeated_documents_are_packed",
+            "ExactDocumentPackTests.test_unique_documents_and_short_duplicates_are_unchanged",
+            "ExactDocumentPackTests.test_source_offsets_preserve_unicode_newlines_and_prefix",
+            "ExactDocumentPackTests.test_tampered_content_and_receipts_are_rejected",
+            "ChiselCompressionTests.sources",
+            "ChiselCompressionTests.test_candidates_keep_route_specific_rules_and_exact_output_contract",
+            "ChiselCompressionTests.test_unbound_modify_source_is_rejected",
+            "JevInterleaveTests.test_interleaving_has_no_typesafe_client_or_network_dependency",
+            "JevInterleaveTests.test_verification_state_is_bound_to_exact_source_window",
+            "JevInterleaveTests.test_typed_checks_can_stop_after_one_bounded_draft",
+            "JevInterleaveTests.test_unknown_judgment_refines_once_then_falls_back",
+            "JevInterleaveTests.test_fabricated_evidence_or_partial_decisions_cannot_terminate"
+          ]
+        },
+        "Removed unused campaign imports; retained required synthetic fixtures"
+      ]
+    },
+    {
+      "source": "tests/test_qa_meta_rsi.py",
+      "destination": "tests/test_qa_meta_rsi.py",
+      "source_sha256": "c8fa86fbf06408125d5bf9949f10bc6fef9b0caba029cbfa4a9f58b08188af69",
+      "release_sha256": "ca0e6e70c36704e6f2b1dcb4c511adf0aa36c1ca8b1725fc6e1d8cb562205f94",
+      "changes": [
+        "Extracted provider-free controller tests; campaign-dependent tests excluded",
+        "Python imports relocated",
+        {
+          "retained": [
+            "profiles",
+            "rows",
+            "MetaRSIContractTests.setUp",
+            "MetaRSIContractTests.patch",
+            "MetaRSIContractTests.apply",
+            "MetaRSIContractTests.test_initial_render_is_byte_identical",
+            "MetaRSIContractTests.test_stable_rule_id_survives_rewording_and_deletion",
+            "MetaRSIContractTests.test_parent_hash_is_required_not_line_matching",
+            "MetaRSIContractTests.test_protected_unknown_duplicate_and_multiline_edits_rejected",
+            "MetaRSIContractTests.test_unchanged_or_unbounded_edits_rejected",
+            "MetaRSIContractTests.test_training_answer_case_id_and_executable_text_rejected",
+            "MetaRSIContractTests.test_evidence_must_be_training_bound",
+            "MetaRSIContractTests.test_policy_and_skill_are_different_versioned_objects",
+            "MetaRSIContractTests.test_whole_duplicate_question_groups_are_retained",
+            "MetaRSIContractTests.test_complete_usage_and_cohort_required",
+            "MetaRSIContractTests.test_cost_is_complete_prompt_plus_output",
+            "MetaRSIContractTests.test_quality_repair_can_spend_existing_compression_headroom",
+            "MetaRSIContractTests.test_quality_regression_cannot_be_bought_with_tokens",
+            "MetaRSIContractTests.term",
+            "MetaRSIContractTests.test_meta_promotes_real_policy_and_real_harness",
+            "MetaRSIContractTests.test_alias_noise_never_counts_as_policy_improvement",
+            "MetaRSIContractTests.test_meta_policy_tie_and_control_regression_roll_back_both",
+            "MetaRSIContractTests.test_fixed_branch_keeps_pi_and_uses_equal_two_child_inventory",
+            "MetaRSIContractTests.test_final_joint_gate_requires_both_metrics_cost_and_active_mechanism"
+          ]
+        },
+        "Removed unused campaign imports; retained required synthetic fixtures"
+      ]
+    },
+    {
+      "source": "tests/test_qa_single_module_rsi.py",
+      "destination": "tests/test_qa_single_module_rsi.py",
+      "source_sha256": "c21fc31c9b5141908df04a4b2e2db4db44d7653da1c34bd2f437e8c27a440520",
+      "release_sha256": "11407fa17ad50336bd21152ac06c06beccaf37cf06c0da6a5317d698164e4fcb",
+      "changes": [
+        "Extracted provider-free controller tests; campaign-dependent tests excluded",
+        "Python imports relocated",
+        {
+          "retained": [
+            "skill",
+            "items",
+            "blocks",
+            "cases",
+            "diagnoses",
+            "limits",
+            "test_compact_step_changes_only_one_module_and_preserves_prior_steps",
+            "test_compact_step_rejects_layout_changes_and_unknown_modules",
+            "test_integration_requires_independent_lineages_from_one_parent",
+            "test_integration_rejects_cross_module_edits_even_with_matching_parent",
+            "test_compact_gate_accepts_observed_quality_ties_but_never_guarantees_unseen_inputs",
+            "test_compact_gate_rejects_quality_or_cost_regression",
+            "test_compact_gate_rejects_partial_or_unknown_usage",
+            "test_no_skill_target_is_strict_for_both_score_and_actual_tokens",
+            "test_module_progress_requires_real_score_gain_and_cost_reduction",
+            "test_module_lineage_integration_preserves_full_parent_chain",
+            "test_no_skill_target_rejects_mismatched_pairs_and_invalid_threshold",
+            "proposal",
+            "assessment",
+            "test_partitioning_is_label_blind_disjoint_and_retains_duplicate_groups",
+            "test_invalid_repeat_inventories_and_native_usage_fail",
+            "test_training_categories_are_per_task_not_votes_per_rollout",
+            "test_training_rejects_heldout_data_or_different_request_bodies",
+            "test_diagnosis_must_cite_actual_same_task_contrast",
+            "test_no_culprit_is_an_explicit_valid_diagnosis_not_a_forced_patch",
+            "test_duplicate_questions_and_repeated_diagnoses_do_not_create_support",
+            "test_single_target_is_selected_deterministically_from_training_only",
+            "test_fixed_sibling_proposals_share_parent_controller_and_support",
+            "test_module_patch_schema_locks_parent_evidence_and_module_without_backend_uniqueitems",
+            "test_only_supported_module_and_profile_can_be_rewritten",
+            "test_cross_module_unobserved_profile_and_contract_edits_fail",
+            "test_patch_evidence_and_parent_are_bound",
+            "test_support_payload_keeps_distinct_groups_and_complete_cases",
+            "test_success_requires_quality_cost_and_grouped_interval_support",
+            "test_quality_ties_missing_saving_and_f1_failure_stop_promotion",
+            "test_aa_variability_cannot_be_claimed_as_a_content_gain",
+            "test_one_group_does_not_become_many_independent_units",
+            "test_bootstrap_is_reproducible_with_duplicate_tasks_nested_inside_groups",
+            "test_aa_input_mismatch_is_fatal_even_when_scores_match",
+            "test_native_input_matched_generic_tie_does_not_establish_content_benefit",
+            "test_generic_body_control_preserves_other_modules_and_answer_contract",
+            "test_candidate_selection_retains_parent_if_nothing_passes"
+          ]
+        },
+        "Removed unused campaign imports; retained required synthetic fixtures"
+      ]
+    },
+    {
+      "source": "tests/test_residual_programs.py",
+      "destination": "tests/test_residual_programs.py",
+      "source_sha256": "69109576b74a456b378fff0e5647f0d99a0008c1e06b0d6c4b73eeb7323ecbee",
+      "release_sha256": "80de631f27fd024cc010200fc5fd4ac5307fde44f4a62c7feea0503d82a4e731",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_spreadsheetbench2_chisel_pareto.py",
+      "destination": "tests/test_spreadsheet_recovery.py",
+      "source_sha256": "1f53436e6cdeec60962fdf4fcf8807924541937e68a4908d933e7d30a593c235",
+      "release_sha256": "aa0648672b9f1b56e93e30676ef59e88847cc27b492cb15f31919184a005ef04",
+      "changes": [
+        "Extracted provider-free controller tests; campaign-dependent tests excluded",
+        "Python imports relocated",
+        {
+          "retained": [
+            "recovery_payload",
+            "test_recovery_preserves_normal_requests_and_canonical_history",
+            "test_early_recovery_requires_completed_public_feedback_and_keeps_task",
+            "test_early_recovery_waits_for_declared_round_and_restores_original",
+            "test_recovery_keeps_complete_recent_tool_pairs_and_original_task",
+            "test_recovery_error_and_periodic_refresh_restore_full_original_request",
+            "test_no_periodic_refresh_retains_error_and_truncation_fallbacks",
+            "test_recovery_fails_closed_for_incomplete_round_and_never_increases_cap",
+            "test_recovery_ablations_isolate_context_and_generation_cap",
+            "test_recovery_truncated_response_returns_to_original_without_extra_call",
+            "test_recovery_never_discards_intervening_system_constraints"
+          ]
+        },
+        "Removed unused campaign imports; retained required synthetic fixtures"
+      ]
+    },
+    {
+      "source": "tests/test_supported_local_decision.py",
+      "destination": "tests/test_supported_local_decision.py",
+      "source_sha256": "59c74dc0adcf55326074b28b519cf93dc0e679ef7b6f2a2e5335ab6ef0dc22f1",
+      "release_sha256": "fec540580ba4a8e57286e2788d0d1624cb72a46e06fb4da7afc20e4972526c2b",
+      "changes": [
+        "Relocated Python imports to chisel; retained protocol identifiers"
+      ]
+    },
+    {
+      "source": "tests/test_terminal_bench_qwen35_4b_direct.py",
+      "destination": "tests/test_terminal_jev.py",
+      "source_sha256": "95b9c64ef077dae92470f995dadca77d7eafa2fed55b868de5152d588e8f5600",
+      "release_sha256": "3ee7588a82e5b045e9a0931ac9607932d6f8dad51e147c1ef0b2269022ecc91f",
+      "changes": [
+        "Extracted provider-free controller tests; campaign-dependent tests excluded",
+        "Python imports relocated",
+        {
+          "retained": [
+            "test_jev_continuations_are_bounded_and_do_not_mutate_tool_schema",
+            "test_jev_explicit_plan_requires_a_plan_or_explicit_abstention",
+            "test_jev_gates_abstain_on_missing_evidence_failure_or_timeout"
+          ]
+        },
+        "Removed unused campaign imports; retained required synthetic fixtures"
+      ]
+    }
+  ],
+  "additional_fixtures": [
+    {
+      "source": "scripts/run_terminal_bench_qwen35_4b_direct.py",
+      "source_sha256": "5dd8411b2c0518b374a7a4a7d9af5e49c0eb40660ead6850955058ce918908bc",
+      "symbol": "EXEC_TOOL",
+      "destination": "tests/test_terminal_jev.py",
+      "change": "Literal native tool schema fixture copied to avoid importing the campaign runner."
+    }
+  ],
+  "release_version": "0.2.0"
+}
