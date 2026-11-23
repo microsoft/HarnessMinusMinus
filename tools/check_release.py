@@ -63,7 +63,7 @@ FIGURE_HASHES = {
     "guarded-reuse.gif": "e32930a047583552f8dc1267503e693ea3460179a6d941fece10d29564b4f797",
     "guarded-reuse.png": "9ed0770e8a721c8e6a847f082443bc3a4d47a10e3edc4b3445b44cbb7bfa8fe4",
     "overview.png": "6a7b4b2965feb6cc1de458b762b4542ac37fee904526b50a755e551926c18ff1",
-    "paper-figure-1.png": "9c13a7072429132ef2f3ad23b2e434d97e9b99a051349a206c198a59878b2e7e",
+    "paper-figure-1.png": "8390377bf5db52cf5fbc0dbb39ba22a2bf0bd69b3118e13a8ef47b4755925202",
 }
 
 
@@ -83,12 +83,21 @@ def public_example(name, label, match):
     return False
 
 
-def check_bytes(name, data, errors):
+HISTORICAL_FIGURE_HASHES = {
+    "paper-figure-1.png": {"9c13a7072429132ef2f3ad23b2e434d97e9b99a051349a206c198a59878b2e7e"},
+}
+
+
+def check_bytes(name, data, errors, *, historical=False):
     check_name(name, errors)
     path = PurePosixPath(name)
     if path.suffix in {".gif", ".png"}:
+        digest = hashlib.sha256(data).hexdigest()
+        reviewed = digest == FIGURE_HASHES.get(path.name)
+        if historical and digest in HISTORICAL_FIGURE_HASHES.get(path.name, ()):
+            reviewed = True
         if (path.parent.parts[-3:] != ("docs", "assets", "readme")
-                or FIGURE_HASHES.get(path.name) != hashlib.sha256(data).hexdigest()):
+                or not reviewed):
             errors.append(f"{name}: unreviewed binary asset")
         return
     try:
@@ -147,7 +156,7 @@ def check_history(errors):
         data = stream.read(int(header[2]))
         if stream.read(1) != b"\n":
             raise ValueError("Malformed Git object stream")
-        check_bytes(f"history/{oid[:12]}/{names[oid]}", data, errors)
+        check_bytes(f"history/{oid[:12]}/{names[oid]}", data, errors, historical=True)
     print(f"Checked {len(blobs)} reachable historical blobs")
 
 
