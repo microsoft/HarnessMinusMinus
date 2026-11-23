@@ -58,10 +58,10 @@ def check_name(name, errors):
 # These published figures were reviewed as binary assets. A new image needs review.
 FIGURE_HASHES = {
     "ablation.png": "5a5e2b99f4a82c78af6b8c69a2b846db256da04c7693f4cf8c574b39858ec7ff",
-    "benchmark-results.png": "56b06a6bf0ecfa32a3714ad8d6a67f55426b5cbab3e092e6a95d9143456c4c08",
+    "benchmark-results.png": "3eb48d0061921506dff43422d8dc01582f0e6b3906e407540881776ec8afef8c",
     "competitor-results.png": "7814f0cda9f4aa2b72806ac898511c1c140e51d67466e23b06bc74b6a430353b",
-    "guarded-reuse.gif": "e32930a047583552f8dc1267503e693ea3460179a6d941fece10d29564b4f797",
-    "guarded-reuse.png": "9ed0770e8a721c8e6a847f082443bc3a4d47a10e3edc4b3445b44cbb7bfa8fe4",
+    "guarded-reuse.gif": "62647e7bd0edfbb43f28d3c17e120e35935094bb9245307fffe66c78cef3fcf9",
+    "guarded-reuse.png": "8503e05dfdc0d32f25982a54a972aee706b398d4c38dca431d80f8612793a57a",
     "overview.png": "6a7b4b2965feb6cc1de458b762b4542ac37fee904526b50a755e551926c18ff1",
     "paper-figure-1.png": "8390377bf5db52cf5fbc0dbb39ba22a2bf0bd69b3118e13a8ef47b4755925202",
 }
@@ -84,6 +84,9 @@ def public_example(name, label, match):
 
 
 HISTORICAL_FIGURE_HASHES = {
+    "benchmark-results.png": {"56b06a6bf0ecfa32a3714ad8d6a67f55426b5cbab3e092e6a95d9143456c4c08"},
+    "guarded-reuse.gif": {"e32930a047583552f8dc1267503e693ea3460179a6d941fece10d29564b4f797"},
+    "guarded-reuse.png": {"9ed0770e8a721c8e6a847f082443bc3a4d47a10e3edc4b3445b44cbb7bfa8fe4"},
     "paper-figure-1.png": {"9c13a7072429132ef2f3ad23b2e434d97e9b99a051349a206c198a59878b2e7e"},
 }
 

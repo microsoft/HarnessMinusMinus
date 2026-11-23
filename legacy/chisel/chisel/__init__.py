@@ -1,4 +1,4 @@
-"""Reusable execution controllers with provider-independent interfaces for ReHO."""
+"""Reusable execution controllers with provider-independent interfaces for HarnessMM."""
 
 from .harness.jev_interleave import Draft, interleave
 from .learning.chisel import CalibrationCandidate, select_domain_policy

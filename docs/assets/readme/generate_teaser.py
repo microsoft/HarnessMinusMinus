@@ -26,17 +26,18 @@ def label(draw, x, y, value, size, color=INK, *, bold=False, anchor="lm"):
     draw.text((x, y), value, font=font(size, bold), fill=color, anchor=anchor)
 
 
-def canvas():
+def canvas(context):
     image = Image.new("RGB", SIZE, PAPER)
     draw = ImageDraw.Draw(image)
     label(draw, 42, 39, "HarnessMM", 24, bold=True)
+    label(draw, 1078, 39, context, 23, MUTED, anchor="rm")
     draw.line((42, 69, 1078, 69), fill=RULE, width=2)
     return image, draw
 
 
-def comparison(row, maximum):
-    image, draw = canvas()
-    label(draw, 1078, 39, f'{row["benchmark"]}  /  {row["tasks"]} tasks', 23, MUTED, anchor="rm")
+def comparison(row, actor, maximum):
+    context = f'{row["benchmark"]}  /  {row["tasks"]} tasks  /  {actor}'
+    image, draw = canvas(context)
     label(draw, 42, 134, f'{row["saving"]:.2f}%', 76, TEAL, bold=True)
     label(draw, 330, 140, "fewer execution tokens", 43, bold=True)
     label(draw, 42, 218, "Tokens/task (k)", 23, MUTED)
@@ -51,8 +52,8 @@ def comparison(row, maximum):
     return image
 
 
-def overview(rows):
-    image, draw = canvas()
+def overview(rows, actor):
+    image, draw = canvas(actor)
     label(draw, 42, 123, "Execution tokens saved", 48, bold=True)
     label(draw, 42, 195, "Benchmark / harness", 21, MUTED)
     label(draw, 852, 195, "Tokens/task (k), before → after", 21, MUTED, anchor="rm")
@@ -68,12 +69,13 @@ def overview(rows):
 
 
 def render():
-    rows = json.loads((HERE / "results.json").read_text())["main"]
+    data = json.loads((HERE / "results.json").read_text())
+    rows, actor = data["main"], data["actor"]
     maximum = max(value for row in rows for value in row["tokens"])
-    frames = [comparison(row, maximum) for row in rows]
+    frames = [comparison(row, actor, maximum) for row in rows]
     frames[0].save(HERE / "guarded-reuse.gif", save_all=True, append_images=frames[1:],
                    duration=3200, loop=0, optimize=True)
-    overview(rows).save(HERE / "guarded-reuse.png", optimize=True)
+    overview(rows, actor).save(HERE / "guarded-reuse.png", optimize=True)
 
 
 if __name__ == "__main__":

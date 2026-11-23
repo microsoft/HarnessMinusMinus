@@ -1,8 +1,8 @@
-# AgentMinusMinus
+# HarnessMinusMinus execution controllers
 
-Code for **ReHO: Optimizing Agent Execution Control Flow through Guarded Decision Reuse**.
+This package contains standalone controllers and adapters for HarnessMinusMinus (HarnessMM).
 
-ReHO (Reuse-based Harness Optimization) optimizes the execution control flow of an existing agent harness while actor weights remain fixed. A controller at the model-tool boundary reuses resolved decisions to replace later reasoning callbacks. New semantic decisions, unsupported evidence, and selector abstention invoke the original actor again.
+HarnessMM optimizes the execution control flow of an existing agent harness while actor weights remain fixed. A controller at the model-tool boundary reuses resolved decisions to replace later reasoning callbacks. New semantic decisions, unsupported evidence, and selector abstention invoke the original actor again.
 
 ## Method
 
@@ -22,25 +22,9 @@ Prompt editing, context compaction, instruction optimization, and finalization r
 
 ## Results reported in the paper
 
-The following complete HumanEval comparison uses Qwen3.5-4B on all 98 test tasks:
-
-| Harness | Success (%) | Tokens/task (k) |
-| --- | ---: | ---: |
-| DeepSeek Harness | 71.43 | 96.28 |
-| DeepSeek Harness + ReHO | 85.71 | 11.62 |
-
-This integrated configuration combines decision reuse with fixed context and finalization settings. The separate matched MBPP-sanitized ablation holds authoring and context settings common on all 257 test tasks:
-
-| Condition | Success (%) | Tokens/task (k) |
-| --- | ---: | ---: |
-| Full ReHO | 93.77 | 13.17 |
-| W/o GDR (single-use EDG) | 93.00 | 18.03 |
-| W/o CCS (callbacks retained) | 93.39 | 16.37 |
-| EDG execution disabled | 95.33 | 16.19 |
-
-Full ReHO reduces complete cost by 26.91% relative to single-use EDGs and by 19.52% relative to retained callbacks. Disabling EDG execution solves four more tasks at higher cost. These ablations test graph persistence and callback removal; the certificate's independent benefit is not ablated.
-
-Token cost includes actor input plus output for authorship, selector calls, added context, remaining slow calls, fallback, recovery, finalization, and failed paid executions. Cached input remains counted. Development costs are reported separately.
+The [coding harness comparisons](../../README.md#codex-and-deepseek-coding-harnesses)
+describe the HumanEval and MBPP-sanitized results, including the evaluation settings
+and the scope of token accounting.
 
 ## Install
 
@@ -48,7 +32,7 @@ Python 3.10 or later:
 
 ```bash
 git clone git@github.com:microsoft/HarnessMinusMinus.git
-cd HarnessMinusMinus/legacy/reho
+cd HarnessMinusMinus/legacy/chisel
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e '.[dev]'
@@ -60,7 +44,7 @@ The tests use synthetic inputs and mocked responses. They do not load benchmark 
 
 ## Repository interfaces
 
-The Python namespace remains `chisel`, and the distribution name remains `chisel-jev` for compatibility. Method descriptions use ReHO, EDG, GDR, and CCS as in the paper.
+The Python namespace remains `chisel`, and the distribution name remains `chisel-jev` for compatibility. See the [method guide](docs/METHOD.md) for the execution contracts.
 
 | Area | Entry points | Role in the repository |
 | --- | --- | --- |

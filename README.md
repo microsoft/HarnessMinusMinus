@@ -1,29 +1,59 @@
-# HarnessMM
+# HarnessMinusMinus (HarnessMM)
 
 **Recursive Self-Improvement for Harness Token Efficiency**
+
+Yuhua Jiang<sup>1</sup>, Chang Xu<sup>2</sup>, Feifei Gao<sup>1</sup>, Li Zhao<sup>2</sup>
+
+<sup>1</sup>Tsinghua University · <sup>2</sup>Microsoft Research Asia
 
 <p align="center">
   <a href="https://arxiv.org/abs/2610.32813"><img src="https://img.shields.io/badge/Paper-arXiv%3A2610.32813-B31B1B?logo=arxiv&amp;logoColor=white" alt="Paper (arXiv:2610.32813)"></a>
   <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
 </p>
 
+HarnessMinusMinus (HarnessMM) uses recursive self-improvement (RSI) to reduce
+the tokens an agent harness needs for a target task or task family while
+preserving task performance. It can start from a simple harness that calls
+the model after every tool result, or improve an existing harness such as
+Codex or DeepSeek Harness. The model weights stay fixed.
+
+HarnessMM represents execution as an Executable Decision Graph (EDG). Nodes
+represent steps such as model reasoning or tool calls. Directed edges specify
+which steps can follow and what must complete first. A stored tool action
+includes its exact arguments and a guard that determines when it can run.
+Guarded Decision Reuse (GDR) adds a path for a resolved action and activates
+it when the observed tool result satisfies its guard. Certified Callback
+Substitution (CCS) runs the action through the native tool interface and
+records the receipt and the model call it bypassed. When the task needs a
+new decision, control returns to the model.
+
+RSI uses task success and token use on training runs to guide edits to the
+graph, such as adding, removing or modifying nodes and edges. It also refines
+the prompts and rules that govern graph authoring and execution. Each accepted
+configuration becomes the starting point for the next round, and validation
+selects the configuration for deployment.
+
+The studies highlighted in this README span ten benchmarks: code generation and
+terminal tasks (HumanEval, MBPP-sanitized, Terminal-Bench 2), question
+answering (SearchQA), mathematical reasoning (LiveMath, AIME), interactive
+tool use (ALFWorld, GAIA2), and web interaction (MiniWoB++, WebArena-Verified). On
+HumanEval, Codex used **29.54% fewer execution tokens** at the same **90.82%**
+success rate, while DeepSeek Harness used **87.93% fewer** and improved from
+**71.43% to 85.71%** success. On GAIA2, HarnessMM cut execution tokens by
+**12.41%** against the baseline harness and raised success from **42.71% to
+43.96%**. On MiniWoB++, HarnessMM-V cut execution tokens by **29.56%** against
+the baseline harness and raised success from **60.42% to 64.58%**. See the
+[technical report](https://arxiv.org/html/2610.32813v2#S5.SS4) and
+[MiniWoB++ comparison](#harnesspro-sol-pi-codex-and-deepseek-comparisons).
+
 <p align="center">
   <picture>
     <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/guarded-reuse.png">
-    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="Execution token savings with HarnessMM: 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval, and 80.35% for DeepSeek Harness on MBPP-sanitized.">
+    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="Execution token savings with HarnessMM using Qwen3.5-4B in all three comparisons: 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval, and 80.35% for DeepSeek Harness on MBPP-sanitized.">
   </picture>
 </p>
 
 [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
-
-HarnessMM lets an agent plan several tool calls in one model turn. After each
-call, the harness reads the tool result and runs the next planned action when
-its conditions hold. On HumanEval, Codex with HarnessMM used 29.54% fewer
-execution tokens at the same 90.82% success rate.
-
-HarnessMM-V extends this approach to visual tasks. On 96 MiniWoB++ test tasks,
-it solved 62 tasks at 3.98 Tokens/task (k), a 29.56% reduction in test execution
-tokens compared with the baseline harness.
 
 ## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
 
@@ -50,7 +80,7 @@ of its Medium tier. See the [full ten-method comparison and results update](docs
 
 ![Task feedback guides edits to an execution graph. Before-and-after diagrams show guarded decision reuse and certified callback substitution.](docs/assets/readme/paper-figure-1.png)
 
-*Figure 1. HarnessMM edits the execution graph using task feedback. In the example, Guarded Decision Reuse adds a path for a resolved decision. Certified Callback Substitution then replaces repeated reasoning and tool use with a native callback.*
+*Figure 1. HarnessMM edits the execution graph using task feedback. In the example, Guarded Decision Reuse adds a path for a resolved decision. Certified Callback Substitution then runs the stored action through the native tool interface and records the model callback it bypassed.*
 
 ![HarnessMM overview: the slow actor authors an executable graph, receipt guards select eligible actions, and native execution records callback substitutions. Training, validation and testing remain separate.](docs/assets/readme/overview.svg)
 
@@ -100,7 +130,7 @@ tools, scorer and token-efficiency objective.
 | --- | ---: | --- | ---: | ---: | ---: |
 | HumanEval | 98 | Codex | 90.82 → 90.82 | 66.72 → 47.02 | 29.54 |
 | HumanEval | 98 | DeepSeek Harness | 71.43 → 85.71 | 96.28 → 11.62 | 87.93 |
-| MBPP-sanitized | 257 | DeepSeek Harness (Qwen) | 90.27 → 91.83 | 53.98 → 10.61 | 80.35 |
+| MBPP-sanitized | 257 | DeepSeek Harness | 90.27 → 91.83 | 53.98 → 10.61 | 80.35 |
 
 Costs include complete-task actor input and output, authorship, selectors,
 finalization, retries, fallbacks and unsuccessful executions. Offline
@@ -113,26 +143,13 @@ metering evidence. See the [reproduction guide](REPRODUCE.md#readme-benchmark-re
 
 ### Decision reuse and callback substitution
 
-A separate four-condition ablation uses DeepSeek Harness and Qwen3.5-4B on
-the same 257 MBPP-sanitized test tasks. Every condition retains graph
-authorship. The conditions vary graph execution, persistence or callback
-substitution.
-
-![Four MBPP-sanitized ablation conditions on 257 test tasks. Full HarnessMM-V uses 13.17 Tokens/task (k) at 93.77% success. Disabling EDG execution uses 16.19 Tokens/task (k) at 95.33% success. The table gives all four conditions and their certified substitutions.](docs/assets/readme/ablation.svg)
-
-| Configuration | Success (%) | Tokens/task (k) | Certified callback substitutions |
-| --- | ---: | ---: | ---: |
-| Full HarnessMM-V | 93.77 | 13.17 | 407 |
-| Single-use EDG | 93.00 | 18.03 | 212 |
-| Callback retained | 93.39 | 16.37 | 0 |
-| EDG execution disabled | 95.33 | 16.19 | 0 |
-
-Full HarnessMM-V used 26.91% fewer tokens than single-use EDG, 19.52% fewer
-than the retained-callback condition and 18.62% fewer than the condition
-with EDG execution disabled. The paired cost interval excludes zero for
-the single-use comparison. Figure 6 and Table 30 of the November 20, 2026
-HarnessMM-V manuscript report all four conditions. See the
-[ablation data and source records](docs/assets/readme/results.json).
+On 257 MBPP-sanitized test tasks with DeepSeek Harness and Qwen3.5-4B,
+retaining the decision graph across tool results reduced Tokens/task (k)
+from **18.03 to 13.17** (**26.91% fewer**) compared with discarding the graph
+after one use. Success was 93.00% with single-use graphs and 93.77% with
+persistent graphs. The adjusted 98.33% paired interval for the reduction was 4.01% to
+45.57%. The [ablation data and source records](docs/assets/readme/results.json)
+give all four conditions and their certified substitutions.
 
 ## Quick start
 
@@ -262,7 +279,7 @@ The extracted project code retains its [Apache-2.0 license](LICENSE).
 Upstream harnesses, benchmarks, datasets and model weights retain their own
 licenses and access requirements. See [NOTICE](NOTICE).
 
-The earlier [ReHO package](legacy/reho/README.md) is available as a standalone distribution. Install it with `python -m pip install ./legacy/reho`.
+The [HarnessMM controllers](legacy/chisel/README.md) are also available as a standalone distribution. Install them with `python -m pip install ./legacy/chisel`.
 
 ## Contributing
 

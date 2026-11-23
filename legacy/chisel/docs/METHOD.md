@@ -1,6 +1,6 @@
-# ReHO: execution control flow optimization
+# HarnessMM execution control flow
 
-The paper is titled **ReHO: Optimizing Agent Execution Control Flow through Guarded Decision Reuse**. ReHO expands to **Reuse-based Harness Optimization**. AgentMinusMinus is the repository name; `chisel` and `chisel-jev` remain the Python namespace and distribution name.
+HarnessMinusMinus (HarnessMM) optimizes agent execution through guarded decision reuse and recursive self-improvement. The standalone controllers use the `chisel` Python namespace and the `chisel-jev` distribution name.
 
 ## Executable Decision Graphs (EDG)
 

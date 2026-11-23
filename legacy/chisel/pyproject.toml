@@ -5,12 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "chisel-jev"
 version = "0.2.0"
-description = "ReHO: optimizing agent execution control flow through guarded decision reuse"
+description = "HarnessMM execution controllers and adapters for guarded decision reuse"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
-authors = [{name = "AgentMinusMinus contributors"}]
+authors = [{name = "HarnessMM contributors"}]
 dependencies = []
 
 [project.optional-dependencies]

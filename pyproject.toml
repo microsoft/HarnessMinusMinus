@@ -23,7 +23,7 @@ dev = ["pytest==9.0.3", "jsonschema==4.26.0", "build==1.2.2.post1"]
 analysis = ["numpy>=2,<3"]
 
 [tool.setuptools.packages.find]
-where = [".", "legacy/reho"]
+where = [".", "legacy/chisel"]
 include = ["chisel*", "harnessmm*", "phiagent", "integrations*", "scripts*"]
 exclude = ["tests*", "examples*", "docs*"]
 namespaces = true

@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: legacy/reho
+        working-directory: legacy/chisel
     strategy:
       matrix:
         python: ['3.10', '3.12', '3.14']

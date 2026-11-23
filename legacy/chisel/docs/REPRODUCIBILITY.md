@@ -1,6 +1,6 @@
 # Reproducibility
 
-The method is ReHO (Reuse-based Harness Optimization): Executable Decision Graphs (EDG), Guarded Decision Reuse (GDR), and Certified Callback Substitution (CCS). Follow [METHOD.md](METHOD.md) for the paper definitions. Preserve separate attribution for prompt, context, instruction, and finalization configurations.
+HarnessMM's execution method uses Executable Decision Graphs (EDG), Guarded Decision Reuse (GDR), and Certified Callback Substitution (CCS). Follow [METHOD.md](METHOD.md) for the paper definitions. Preserve separate attribution for prompt, context, instruction, and finalization configurations.
 
 ## This release
 

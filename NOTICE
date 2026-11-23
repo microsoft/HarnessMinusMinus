@@ -18,7 +18,7 @@ from https://github.com/jlon/pi-harnessmm at commit
 8d0a9dab98db4cd83eec2955870ffbf6b2a04946. Its original Apache-2.0
 license and attribution are in pi-harnessmm/LICENSE and pi-harnessmm/NOTICE.
 
-AgentMinusMinus: controllers and adapters for ReHO
+HarnessMinusMinus (HarnessMM): execution controllers and adapters
 Copyright 2026 PhiAgent-0 contributors
 
 Distributed under the Apache License, Version 2.0.

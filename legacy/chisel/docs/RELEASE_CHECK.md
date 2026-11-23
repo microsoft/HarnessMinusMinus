@@ -1,6 +1,6 @@
 # Release validation
 
-The repository exposes reusable controllers and adapters associated with ReHO. Its method definitions follow [METHOD.md](METHOD.md); companion configurations retain separate attribution.
+The repository exposes reusable controllers and adapters for HarnessMM. Its method definitions follow [METHOD.md](METHOD.md); companion configurations retain separate attribution.
 
 Run validation from the repository root:
 

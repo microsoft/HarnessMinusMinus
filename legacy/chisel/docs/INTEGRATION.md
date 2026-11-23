@@ -1,6 +1,6 @@
 # Integration
 
-ReHO (Reuse-based Harness Optimization) comprises Executable Decision Graphs (EDG), Guarded Decision Reuse (GDR), and Certified Callback Substitution (CCS). The [method guide](METHOD.md) defines the paper terminology and the distinction between core execution control and companion configurations. The `chisel` namespace and `jev` API names remain stable implementation identifiers.
+HarnessMM's execution method comprises Executable Decision Graphs (EDG), Guarded Decision Reuse (GDR), and Certified Callback Substitution (CCS). The [method guide](METHOD.md) defines the paper terminology and the distinction between core execution control and companion configurations. The `chisel` namespace and `jev` API names remain stable implementation identifiers.
 
 [controller_defaults.json](../configs/controller_defaults.json) contains explicit controller settings for integration examples. It is not a frozen benchmark configuration.
 
