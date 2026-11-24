@@ -97,18 +97,7 @@ adapter rules using training feedback. Validation selects among frozen
 training-derived candidates; the selected configuration is frozen before test.
 Model weights stay fixed.
 
-This repository contains the current implementation extracted from the
-[PhiAgent research workspace](https://github.com/YuhuaJiang2002/PhiAgent).
-The Python package is `harnessmm`, matching the project name:
-
-```python
-from harnessmm.harness.codex_chisel import CodexChiselController
-from harnessmm.harness.benchmark_partition import build_partition
-```
-
-Existing `phiagent` imports remain supported through a compatibility bridge.
-`CHISEL`, `SAR`, `Jev` and `<CHISEL_PLAN>` retain their internal implementation
-and protocol names. See [package migration](docs/PACKAGE_MIGRATION.md) for details.
+The Python package is `harnessmm`.
 See the [code map](docs/CODE_MAP.md) for the paper-to-code correspondence.
 
 ## Codex and DeepSeek coding harnesses
@@ -207,7 +196,6 @@ python reproduction/run_all.py
 | `harnessmm/harness/` | Codex adapters, protected training/selection lifecycle, benchmark-specific controllers and RSI |
 | `harnessmm/learning/` | Residual fitting, cross-fitting, public-evidence contracts, routing and companion configuration methods |
 | `harnessmm/evaluation/` | Native score checks, quality/cost comparisons and complete token accounting |
-| `phiagent/` | Compatibility bridge for older Python imports |
 | `scripts/` | Research runners, preparation, metering and analysis dependencies |
 | `configs/` | Two reference configurations used by the unit tests |
 | `reproduction/` | Frozen HumanEval reference, MBPP result aggregates and runnable mechanism cases |
@@ -258,8 +246,6 @@ and selection to execution cost.
 The extracted project code retains its [Apache-2.0 license](LICENSE).
 Upstream harnesses, benchmarks, datasets and model weights retain their own
 licenses and access requirements. See [NOTICE](NOTICE).
-
-The [HarnessMM controllers](legacy/chisel/README.md) are also available as a standalone distribution. Install them with `python -m pip install ./legacy/chisel`.
 
 ## Contributing
 
