@@ -253,26 +253,6 @@ executions to two decimal places. Count authorship, control, retries, fallbacks
 and unsuccessful executions. For total RSI cost, add offline optimization
 and selection to execution cost.
 
-## Citation
-
-If you use this implementation, cite **HarnessMM: Recursive Self-Improvement
-for Harness Token Efficiency**, by Yuhua Jiang, Chang Xu, Feifei Gao and Li Zhao
-([arXiv:2610.32813](https://arxiv.org/abs/2610.32813)).
-
-```bibtex
-@misc{jiang2026harnessmmrecursiveselfimprovementharness,
-  title={HarnessMM: Recursive Self-Improvement for Harness Token Efficiency},
-  author={Yuhua Jiang and Chang Xu and Feifei Gao and Li Zhao},
-  year={2026},
-  eprint={2610.32813},
-  archivePrefix={arXiv},
-  primaryClass={cs.AI},
-  url={https://arxiv.org/abs/2610.32813},
-}
-```
-
-The BibTeX citation is provided in [CITATION.bib](CITATION.bib).
-
 ## License
 
 The extracted project code retains its [Apache-2.0 license](LICENSE).
@@ -308,3 +288,23 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 ![Task performance and tokens per task for HarnessMM and HarnessMM-V across six benchmarks](docs/assets/readme/harnessmm-six-benchmark-results.png)
 
 ![Token savings and before-and-after pass rates for Codex and DeepSeek across three actor models on HumanEval and MBPP-sanitized](docs/assets/readme/harnessmm-coding-harness-results.png)
+
+## Citation
+
+If you use this implementation, cite **HarnessMM: Recursive Self-Improvement
+for Harness Token Efficiency**, by Yuhua Jiang, Chang Xu, Feifei Gao and Li Zhao
+([arXiv:2610.32813](https://arxiv.org/abs/2610.32813)).
+
+```bibtex
+@misc{jiang2026harnessmmrecursiveselfimprovementharness,
+  title={HarnessMM: Recursive Self-Improvement for Harness Token Efficiency},
+  author={Yuhua Jiang and Chang Xu and Feifei Gao and Li Zhao},
+  year={2026},
+  eprint={2610.32813},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2610.32813},
+}
+```
+
+The BibTeX citation is provided in [CITATION.bib](CITATION.bib).
