@@ -247,6 +247,12 @@ The extracted project code retains its [Apache-2.0 license](LICENSE).
 Upstream harnesses, benchmarks, datasets and model weights retain their own
 licenses and access requirements. See [NOTICE](NOTICE).
 
+## Benchmark results
+
+![Task performance and tokens per task for HarnessMM and HarnessMM-V across six benchmarks](docs/assets/readme/harnessmm-six-benchmark-results.png)
+
+![Token savings and before-and-after pass rates for Codex and DeepSeek across three actor models on HumanEval and MBPP-sanitized](docs/assets/readme/harnessmm-coding-harness-results.png)
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
@@ -268,12 +274,6 @@ trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
-
-## Benchmark results
-
-![Task performance and tokens per task for HarnessMM and HarnessMM-V across six benchmarks](docs/assets/readme/harnessmm-six-benchmark-results.png)
-
-![Token savings and before-and-after pass rates for Codex and DeepSeek across three actor models on HumanEval and MBPP-sanitized](docs/assets/readme/harnessmm-coding-harness-results.png)
 
 ## Citation
 
