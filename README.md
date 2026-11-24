@@ -49,11 +49,11 @@ the baseline harness and raised success from **60.42% to 64.58%**. See the
 <p align="center">
   <picture>
     <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/guarded-reuse.png">
-    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="Execution token savings with HarnessMM using Qwen3.5-4B in all three comparisons: 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval, and 80.35% for DeepSeek Harness on MBPP-sanitized.">
+    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="HarnessMM demonstration. A model writes a graph for a synthetic compile-and-test task. Guarded Decision Reuse checks the compile receipt and Certified Callback Substitution runs the test without another model call. Recursive self-improvement edits the graph and rules using training feedback. On held-out coding tasks with Qwen3.5-4B, execution tokens fell 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval and 80.35% for DeepSeek Harness on MBPP-sanitized. Success was unchanged or higher in each pair.">
   </picture>
 </p>
 
-[Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
+[Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
 
 ## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
 
