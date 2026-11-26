@@ -18,7 +18,7 @@ GENERATED = {".git", ".venv", "node_modules", "__pycache__", "build", "dist"}
 PROJECT_LINK = re.compile(
     r"(?:https?://github\.com/|git@github\.com:|git:github\.com/)"
     r"(?:YuhuaJiang2002/(?:HarnessMM(?:-R)?|HarnessMinusMinus|PhiAgent(?:-0)?)"
-    r"|microsoft/HarnessMinusMinus)(?=[/.@\s\"'):#]|$)"
+    r"|microsoft/HarnessMinusMinus|jlon/pi-harnessmm|DSH-Extensions-list/dsh-harnessmm)(?=[/.@\s\"'):#]|$)"
 )
 
 
