@@ -4953,19 +4953,25 @@
     {
       "path": "scripts/run_chisel_component_quality.py",
       "source_sha256": "74737e7013ff3c5d143127a9a3b4f56c0a7ecfac8499974399a484a67835ab08",
-      "published_sha256": "35c7d5828a8f2f443acd020ef4e89b31f739f45d58e2e77b11ded5c1c3890107",
+      "published_sha256": "d8cbc0d8675fa24b60d393f0f9c404aeeda3a77873d44a7b85fe834a2925b574",
       "release_edits": [
         {
           "category": "deployment-placeholder",
           "occurrences": 1
         },
-        "2026-11-03 public Python namespace migration to harnessmm; preserve historical protocol identifiers and original source digests."
+        "2026-11-03 public Python namespace migration to harnessmm; preserve historical protocol identifiers and original source digests.",
+        "2026-11-26 derive runtime repository identity from origin and explicitly bind external source receipts; preserve historical identifiers."
       ],
       "published_history": [
         {
           "path": "scripts/run_chisel_component_quality.py",
           "sha256": "de27ba7f33b0931673023fd9133af69a2fe5cf794437b76b3510d145cfff3f10",
           "reference": "082305ddfaf9d50b76b1367b9c61cbd82733b269"
+        },
+        {
+          "path": "scripts/run_chisel_component_quality.py",
+          "sha256": "35c7d5828a8f2f443acd020ef4e89b31f739f45d58e2e77b11ded5c1c3890107",
+          "reference": "12be31a6f49a8050c8d7504199edcdafb895b89d"
         }
       ],
       "source_path": "scripts/run_chisel_component_quality.py"
@@ -5679,15 +5685,21 @@
     {
       "path": "scripts/run_searchqa_residual_meta_campaign.py",
       "source_sha256": "3fdb8af8a74a6e6a4126fbead6a6e3a4b0360f18f53d73abd876ccca5d705700",
-      "published_sha256": "22bb0e330e9897f82ba5a0b3513517c41ab3b90318fd524a2a190527196a3dda",
+      "published_sha256": "1263b5d47b7a68384792e7cd8ec9a940dc55ee7a8868145f4d2003cad4107aa5",
       "release_edits": [
-        "2026-11-03 public Python namespace migration to harnessmm; preserve historical protocol identifiers and original source digests."
+        "2026-11-03 public Python namespace migration to harnessmm; preserve historical protocol identifiers and original source digests.",
+        "2026-11-26 derive runtime repository identity from origin and explicitly bind external source receipts; preserve historical identifiers."
       ],
       "published_history": [
         {
           "path": "scripts/run_searchqa_residual_meta_campaign.py",
           "sha256": "3fdb8af8a74a6e6a4126fbead6a6e3a4b0360f18f53d73abd876ccca5d705700",
           "reference": "082305ddfaf9d50b76b1367b9c61cbd82733b269"
+        },
+        {
+          "path": "scripts/run_searchqa_residual_meta_campaign.py",
+          "sha256": "22bb0e330e9897f82ba5a0b3513517c41ab3b90318fd524a2a190527196a3dda",
+          "reference": "12be31a6f49a8050c8d7504199edcdafb895b89d"
         }
       ],
       "source_path": "scripts/run_searchqa_residual_meta_campaign.py"

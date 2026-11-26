@@ -64,6 +64,7 @@ from scripts.run_searchqa_residual_meta_campaign import (  # noqa: E402
     task_features,
     verify_self_hash,
 )
+from scripts.source_repository import source_repository, validate_repository  # noqa: E402
 
 HOSTS = frozenset({"harnessmm-worker-1", "harnessmm-worker-2"})
 TRAIN_ARMS = ("delete", "modify", "skillopt")
@@ -160,18 +161,25 @@ def package_versions() -> dict:
     }
 
 
-def git_provenance(root: Path, source_state: Path | None) -> dict:
+def git_provenance(
+    root: Path, source_state: Path | None, *, expected_repository: str | None = None,
+) -> dict:
     if source_state is None:
+        if expected_repository is not None:
+            raise ProtocolError("--source-repository requires --source-git-state")
         return {
             "git_state_source": "current_working_tree",
+            "git_repository": source_repository(ROOT),
             "git_head": capture(["git", "rev-parse", "HEAD"]).strip(),
             "git_status": capture(["git", "--no-pager", "status", "--porcelain"]),
             "git_diff": capture(["git", "--no-pager", "diff", "--binary", "HEAD"]),
         }
     state = read_json(source_state)
+    repository = (source_repository(ROOT) if expected_repository is None
+                  else validate_repository(expected_repository))
     expected = {"captured_at_utc", "repository", "head", "branch", "tracked_status_sha256"}
     if (not isinstance(state, dict) or set(state) != expected
-            or state["repository"] != "YuhuaJiang2002/PhiAgent"
+            or state["repository"] != repository
             or not isinstance(state["branch"], str) or not state["branch"]):
         raise ProtocolError("external source Git state has an invalid identity")
     for field, length in (("head", 40), ("tracked_status_sha256", 64)):
@@ -196,6 +204,7 @@ def source_paths() -> list[Path]:
     return sorted(set(ROOT.joinpath("harnessmm").rglob("*.py")) | {
         Path(__file__).resolve(),
         ROOT / "scripts/run_searchqa_residual_meta_campaign.py",
+        ROOT / "scripts/source_repository.py",
         ROOT / "scripts/probe_chisel_model_fidelity.py",
         ROOT / "scripts/prepare_chisel_component_quality_data.py",
     })
@@ -608,7 +617,7 @@ def init(args: argparse.Namespace) -> int:
         metadata = {
             "at": now(), "hostname": socket.gethostname(), "argv": sys.argv,
             "python": sys.version, "package_versions": package_versions(),
-            **git_provenance(root, args.source_git_state),
+            **git_provenance(root, args.source_git_state, expected_repository=args.source_repository),
         }
         freeze_json(root / "provenance.json", metadata)
         protocol = signed({
@@ -2106,6 +2115,8 @@ def main(argv: list[str] | None = None) -> int:
     prepare.add_argument("--service-manifest", type=Path, required=True)
     prepare.add_argument("--source-git-state", type=Path,
                          help="Explicit original Git-state receipt for a source-only remote deployment")
+    prepare.add_argument("--source-repository", type=validate_repository,
+                         help="Expected owner/repository for an external source receipt; defaults to origin")
     prepare.add_argument("--scorer-runtime", choices=SCORER_RUNTIMES, default="native",
                          help="prospectively bind native dependency or audited local-file loader shim")
     execute = subparsers.add_parser("run", help="bounded automatic phase advancement; never retry failures")

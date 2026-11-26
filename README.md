@@ -153,7 +153,7 @@ third-party runtime dependencies. Node.js is also required by the Python
 native-bank adapters.
 
 ```bash
-git clone git@github.com:microsoft/HarnessMinusMinus.git
+git clone git@github.com:YuhuaJiang2002/HarnessMinusMinus.git
 cd HarnessMinusMinus
 python3 -m venv .venv
 source .venv/bin/activate

@@ -42,6 +42,21 @@ uses archived integer aggregates.
 
 ## Research runner entry points
 
+The current repository is [YuhuaJiang2002/HarnessMinusMinus](https://github.com/YuhuaJiang2002/HarnessMinusMinus).
+SearchQA and component-quality runners read their repository identity
+from the checkout's `origin` remote. Component-quality checks require an external
+`--source-git-state` receipt to match that origin by default. For a source-only
+deployment or a receipt from another repository, pass `--source-repository
+OWNER/REPOSITORY` to bind the expected identity explicitly. For example, an
+original PhiAgent receipt uses `--source-repository YuhuaJiang2002/PhiAgent`;
+its recorded repository and bytes stay unchanged.
+
+`SOURCE_MANIFEST.json` records extraction origins and historical source references.
+The Pi extension's `NOTICE` preserves its original port attribution and
+the earlier `YuhuaJiang2002/HarnessMM` source. The bundled Pi package
+links to this repository; its original author remains `jlon` and its upstream
+project remains [jlon/pi-harnessmm](https://github.com/jlon/pi-harnessmm).
+
 The [integration index](../integrations/README.md) exposes Baseline, Codex and
 DeepSeek harnesses. `python examples/harness_boundaries.py` checks the baseline
 callback and Codex imports with synthetic inputs. The baseline package extracts

@@ -31,7 +31,7 @@ and the scope of token accounting.
 Python 3.10 or later:
 
 ```bash
-git clone git@github.com:microsoft/HarnessMinusMinus.git
+git clone git@github.com:YuhuaJiang2002/HarnessMinusMinus.git
 cd HarnessMinusMinus/legacy/chisel
 python -m venv .venv
 source .venv/bin/activate

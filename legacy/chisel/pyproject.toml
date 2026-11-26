@@ -17,7 +17,7 @@ dependencies = []
 dev = ["pytest==9.0.3", "build==1.2.2.post1", "jsonschema==4.26.0"]
 
 [project.urls]
-Repository = "https://github.com/microsoft/HarnessMinusMinus"
+Repository = "https://github.com/YuhuaJiang2002/HarnessMinusMinus"
 
 [tool.setuptools.packages.find]
 include = ["chisel*"]

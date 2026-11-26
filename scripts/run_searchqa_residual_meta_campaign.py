@@ -53,6 +53,7 @@ from harnessmm.learning.searchqa_grounded_features import (  # noqa: E402
     grounded_anchors,
     named_feature_field,
 )
+from scripts.source_repository import source_repository  # noqa: E402
 
 
 PROTOCOL_SCHEMA = "phiagent-searchqa-residual-meta-campaign/v1"
@@ -366,7 +367,7 @@ def _git_state() -> dict[str, Any]:
 
     return {
         "captured_at_utc": utc_now(),
-        "repository": "YuhuaJiang2002/PhiAgent",
+        "repository": source_repository(ROOT),
         "head": capture("rev-parse", "HEAD"),
         "branch": capture("branch", "--show-current"),
         "tracked_status_sha256": hashlib.sha256(capture("status", "--short").encode()).hexdigest(),
@@ -471,6 +472,7 @@ def freeze(args: argparse.Namespace) -> int:
     snapshot = output / "source_snapshot"
     snapshot.mkdir()
     shutil.copy2(Path(__file__).resolve(), snapshot / Path(__file__).name)
+    shutil.copy2(ROOT / "scripts/source_repository.py", snapshot / "source_repository.py")
     service_target = snapshot / args.service_manifest.name
     shutil.copy2(args.service_manifest.resolve(), service_target)
     remainder_target = snapshot / args.remainder_ids.name

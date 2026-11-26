@@ -1,8 +1,9 @@
 # pi-harnessmm
 
-HarnessMM ([arXiv 2610.32813](https://arxiv.org/abs/2610.32813)) as a [pi](https://github.com/earendil-works/pi) extension: a port of
-[YuhuaJiang2002/HarnessMM](https://github.com/YuhuaJiang2002/HarnessMM) that removes repeated reasoning calls by executing
-decisions the slow actor already resolved.
+HarnessMM ([arXiv 2610.32813](https://arxiv.org/abs/2610.32813)) as a [pi](https://github.com/earendil-works/pi) extension for
+[HarnessMinusMinus](https://github.com/YuhuaJiang2002/HarnessMinusMinus). It removes repeated reasoning calls by
+executing decisions the slow actor already resolved. This bundled extension comes from
+[jlon/pi-harnessmm](https://github.com/jlon/pi-harnessmm); its original source and attribution remain in `NOTICE`.
 
 A slow turn authors an Executable Decision Graph in `<CHISEL_PLAN>`, then makes one root `terminal` call. Each
 successor whose guard holds on the **immediately preceding native receipt** executes through the same terminal
@@ -20,10 +21,10 @@ model turn N   ── <CHISEL_PLAN> A→B→C  +  root command
 ## Install
 
 ```bash
-pi install git:github.com/jlon/pi-harnessmm
+pi install ./pi-harnessmm
 ```
 
-Or try it without adding it to settings:
+Run this from the HarnessMinusMinus checkout. Or try it without adding it to settings:
 
 ```bash
 pi -e ./pi-harnessmm
@@ -134,7 +135,7 @@ node scripts/parity-check.mjs ../HarnessMM  # differential parity, 0 disagreemen
    selector also uses a token log probability, which pi does not expose.
 3. Policy versions 8 and 10 read offline RSI training results through
    `HARNESSMM_TRAIN_PRIORS`. The upstream training pipeline is under
-   `phiagent/harness/industrial_*`.
+    `harnessmm/harness/industrial_*`.
 
 Banks last for the root call. The adapter supports v5 condition strings through
 `receiptGuard`. Cross-turn v5 bank retention, streaming chunks and the
