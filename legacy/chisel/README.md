@@ -22,7 +22,7 @@ Prompt editing, context compaction, instruction optimization, and finalization r
 
 ## Results reported in the paper
 
-The [coding harness comparisons](../../README.md#codex-and-deepseek-coding-harnesses)
+The [coding harness comparisons](../../README.md#optimizing-existing-coding-harnesses-codex-and-deepseek-harness)
 describe the HumanEval and MBPP-sanitized results, including the evaluation settings
 and the scope of token accounting.
 

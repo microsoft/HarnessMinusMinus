@@ -1,37 +1,45 @@
-# HarnessMinusMinus (HarnessMM)
+# HarnessMinusMinus: Recursive Self-Improvement for Harness Token Efficiency
 
-**Recursive Self-Improvement for Harness Token Efficiency**
+<p align="center"><strong>Minus Overhead, Minus Cost</strong></p>
 
-Yuhua Jiang<sup>1</sup>, Chang Xu<sup>2</sup>, Feifei Gao<sup>1</sup>, Li Zhao<sup>2</sup>
-
-<sup>1</sup>Tsinghua University · <sup>2</sup>Microsoft Research Asia
+<p align="center">
+  Yuhua Jiang<sup>1</sup>,
+  Chang Xu<sup>2</sup>,
+  Feifei Gao<sup>1</sup>,
+  Li Zhao<sup>2</sup>
+</p>
+<p align="center">
+  <sup>1</sup>Tsinghua University &nbsp; <sup>2</sup>Microsoft Research Asia
+</p>
 
 <p align="center">
   <a href="https://arxiv.org/abs/2610.32813"><img src="https://img.shields.io/badge/Paper-arXiv%3A2610.32813-B31B1B?logo=arxiv&amp;logoColor=white" alt="Paper (arXiv:2610.32813)"></a>
   <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
 </p>
 
-HarnessMinusMinus (HarnessMM) uses recursive self-improvement (RSI) to reduce
-the tokens an agent harness needs for a target task or task family while
-preserving task performance. It can start from a simple harness that calls
-the model after every tool result, or improve an existing harness such as
-Codex or DeepSeek Harness. The model weights stay fixed.
+HarnessMinusMinus (HarnessMM) uses recursive self-improvement (RSI) to **reduce the tokens**
+an agent harness needs for a target task or task family while
+**preserving task performance**. It can **start from a simple harness** that calls
+the model after every tool result, or **improve an existing harness such as Codex or DeepSeek Harness**.
+The model weights stay fixed.
 
-HarnessMM represents execution as an Executable Decision Graph (EDG). Nodes
-represent steps such as model reasoning or tool calls. Directed edges specify
-which steps can follow and what must complete first. A stored tool action
-includes its exact arguments and a guard that determines when it can run.
-Guarded Decision Reuse (GDR) adds a path for a resolved action and activates
-it when the observed tool result satisfies its guard. Certified Callback
-Substitution (CCS) runs the action through the native tool interface and
-records the receipt and the model call it bypassed. When the task needs a
-new decision, control returns to the model.
+<p align="center">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/harnessmm-six-benchmark-results.png">
+    <img src="docs/assets/readme/rsi-results.gif" width="100%" alt="Three RSI steps, followed by coding results for Codex and DeepSeek Harness and a comparison across six benchmarks.">
+  </picture>
+</p>
 
-RSI uses task success and token use on training runs to guide edits to the
-graph, such as adding, removing or modifying nodes and edges. It also refines
-the prompts and rules that govern graph authoring and execution. Each accepted
-configuration becomes the starting point for the next round, and validation
-selects the configuration for deployment.
+HarnessMM models the agent harness as an **Executable Decision Graph (EDG)**:
+nodes represent operations such as model reasoning and tool calls, and directed
+edges specify control flow and dependencies. RSI optimizes the graph by adding,
+removing, or modifying nodes and edges. It also uses two specialized graph edits:
+**Guarded Decision Reuse (GDR)** adds a path for a previously planned action
+when its prerequisites and current-state checks pass; **Certified Callback
+Substitution (CCS)** executes that action with its original arguments and
+records the tool receipt and the model request it bypassed. This lets RSI
+optimize what each step does and when it runs, using task success and total
+token use on complete training runs to select changes to the harness as a whole.
 
 The studies highlighted in this README span ten benchmarks: code generation and
 terminal tasks (HumanEval, MBPP-sanitized, Terminal-Bench 2), question
@@ -44,18 +52,40 @@ success rate, while DeepSeek Harness used **87.93% fewer** and improved from
 43.96%**. On MiniWoB++, HarnessMM-V cut execution tokens by **29.56%** against
 the baseline harness and raised success from **60.42% to 64.58%**. See the
 [technical report](https://arxiv.org/html/2610.32813v2#S5.SS4) and
-[MiniWoB++ comparison](#harnesspro-sol-pi-codex-and-deepseek-comparisons).
+[MiniWoB++ comparison](#comparing-harnesses-on-web-tasks).
+
+[Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#optimizing-existing-coding-harnesses-codex-and-deepseek-harness) · [Try the pi extension](pi-harnessmm/)
+
+## How it works
+
+![HarnessMM uses task results, token consumption, and a domain signal to revise the harness execution graph.](docs/assets/readme/harness-overview-domain.png)
+
+HarnessMM turns the harness into an editable execution graph and uses task feedback to find changes that save tokens while meeting the task-success target.
+
+1. **Represent the harness as an Executable Decision Graph (EDG).** Each **node** is an operation the harness performs: constructing a prompt, compacting context, calling a model or a tool, or checking a condition. Directed **edges** encode two kinds of relationships: a control-flow edge says which node runs next; a prerequisite edge says which earlier operation must return a successful receipt before a dependent node can run.
+2. **Compose edits from the graph operation pool.** RSI can combine basic edits with two specialized operators for decision reuse:
+   - **Node edits:** add, delete, or modify an operation, such as changing a prompt or a tool call's arguments.
+   - **Edge edits:** add, delete, or redirect a control-flow or prerequisite edge while preserving required dependencies.
+   - **Guarded Decision Reuse (GDR):** add a guarded path for a previously planned action. The harness checks the prerequisite receipts and the current state; if no stored action qualifies, the model makes a fresh decision.
+   - **Certified Callback Substitution (CCS):** replace an eligible model/tool pair with a native tool call that uses the stored arguments. Its certificate links the tool receipt to the ID of the model request that was skipped.
+3. **Run the edited harness and compare.** RSI evaluates the candidate and the current version on the same training tasks. If the edit saves tokens over the whole task and meets the success target, the next round starts from the edited version; otherwise, it starts from the current one. Validation selects the rules to freeze for testing. On each new task, the harness uses those same rules to plan and check actions for that task. The model weights stay fixed.
+
+### Example: compile, then test
+
+In the animation below, the task is to compile and test `example.py`. A simple harness asks the model what to do after compilation. With HarnessMM, the model can specify the test command up front and make it conditional on a successful compile. GDR checks the compiler's exit code; if it is `0`, CCS runs the planned test directly. If compilation fails, the model decides how to proceed. The test still runs on the successful path; what disappears is the second model request.
 
 <p align="center">
   <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/guarded-reuse.png">
-    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="HarnessMM demonstration. A model writes a graph for a synthetic compile-and-test task. Guarded Decision Reuse checks the compile receipt and Certified Callback Substitution runs the test without another model call. Recursive self-improvement edits the graph and rules using training feedback. On held-out coding tasks with Qwen3.5-4B, execution tokens fell 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval and 80.35% for DeepSeek Harness on MBPP-sanitized. Success was unchanged or higher in each pair.">
+    <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/overview.svg">
+    <img src="docs/assets/readme/guarded-reuse-overview.gif" width="100%" alt="A compile-and-test example: GDR checks the compile receipt and CCS runs the planned test without another model call. The final frame shows the full harness workflow.">
   </picture>
 </p>
 
-[Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
+[Run the synthetic example](examples/guarded_reuse.mjs) · [See the code map](docs/CODE_MAP.md)
 
-## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
+## Results
+
+### Comparing harnesses on web tasks
 
 ![MiniWoB++ test execution on 96 tasks per method. HarnessMM-V reached 64.58% success at 3.98 Tokens/task (k). It used 60.31% fewer tokens than HarnessPro, 85.11% fewer than SoL-Pi, 89.93% fewer than Codex Harness and 80.14% fewer than DeepSeek Harness.](docs/assets/readme/competitor-results.svg)
 
@@ -76,31 +106,7 @@ compaction and unsuccessful executions. Offline learning, training checks and
 validation are accounted for separately. HarnessPro uses a visual reproduction
 of its Medium tier. See the [full ten-method comparison and results update](docs/VISUAL_COMPARISON.md).
 
-## How it works
-
-![Task feedback guides edits to an execution graph. Before-and-after diagrams show guarded decision reuse and certified callback substitution.](docs/assets/readme/paper-figure-1.png)
-
-*Figure 1. HarnessMM edits the execution graph using task feedback. In the example, Guarded Decision Reuse adds a path for a resolved decision. Certified Callback Substitution then runs the stored action through the native tool interface and records the model callback it bypassed.*
-
-![HarnessMM overview: the slow actor authors an executable graph, receipt guards select eligible actions, and native execution records callback substitutions. Training, validation and testing remain separate.](docs/assets/readme/overview.svg)
-
-HarnessMM (Harness Minus Minus) reuses decisions that an agent has already made.
-A slow model call writes exact future tool actions into an Executable Decision
-Graph (EDG). After each tool result, Guarded Decision Reuse (GDR) checks whether
-the observed receipt supports a stored action. Certified Callback Substitution
-(CCS) sends that action through the native tool interface and records the
-reasoning callback it replaced. The original actor resumes when new reasoning
-is needed.
-
-Recursive self-improvement (RSI) refines companion prompts, context settings and
-adapter rules using training feedback. Validation selects among frozen
-training-derived candidates; the selected configuration is frozen before test.
-Model weights stay fixed.
-
-The Python package is `harnessmm`.
-See the [code map](docs/CODE_MAP.md) for the paper-to-code correspondence.
-
-## Codex and DeepSeek coding harnesses
+### Optimizing existing coding harnesses: Codex and DeepSeek Harness
 
 On HumanEval, HarnessMM cut execution tokens by **29.54% with Codex** at the same
 success rate and by **87.93% with DeepSeek Harness** as success rose from 71.43%
@@ -130,7 +136,7 @@ The MBPP-sanitized DeepSeek comparison can be recomputed from released
 aggregates. The HumanEval comparisons require external evaluation and
 metering evidence. See the [reproduction guide](REPRODUCE.md#readme-benchmark-results).
 
-### Decision reuse and callback substitution
+#### Decision reuse and callback substitution
 
 On 257 MBPP-sanitized test tasks with DeepSeek Harness and Qwen3.5-4B,
 retaining the decision graph across tool results reduced Tokens/task (k)
@@ -246,12 +252,6 @@ and selection to execution cost.
 The extracted project code retains its [Apache-2.0 license](LICENSE).
 Upstream harnesses, benchmarks, datasets and model weights retain their own
 licenses and access requirements. See [NOTICE](NOTICE).
-
-## Benchmark results
-
-![Task performance and tokens per task for HarnessMM and HarnessMM-V across six benchmarks](docs/assets/readme/harnessmm-six-benchmark-results.png)
-
-![Token savings and before-and-after pass rates for Codex and DeepSeek across three actor models on HumanEval and MBPP-sanitized](docs/assets/readme/harnessmm-coding-harness-results.png)
 
 ## Contributing
 
