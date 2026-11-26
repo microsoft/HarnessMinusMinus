@@ -1,9 +1,10 @@
 # pi-harnessmm
 
-HarnessMM ([arXiv 2610.32813](https://arxiv.org/abs/2610.32813)) as a [pi](https://github.com/earendil-works/pi) extension for
-[HarnessMinusMinus](https://github.com/YuhuaJiang2002/HarnessMinusMinus). It removes repeated reasoning calls by
-executing decisions the slow actor already resolved. This bundled extension comes from
-[jlon/pi-harnessmm](https://github.com/jlon/pi-harnessmm); its original source and attribution remain in `NOTICE`.
+A bundled pi extension for [HarnessMM](../README.md)
+([arXiv 2610.32813](https://arxiv.org/abs/2610.32813)). It removes repeated
+reasoning calls by executing decisions the slow actor already resolved. The
+extension source, tests and reference implementation are included in this
+checkout. Original port attribution is preserved in [NOTICE](NOTICE).
 
 A slow turn authors an Executable Decision Graph in `<CHISEL_PLAN>`, then makes one root `terminal` call. Each
 successor whose guard holds on the **immediately preceding native receipt** executes through the same terminal
@@ -120,8 +121,10 @@ Ported from `integrations/deepseek_harness/{cot_jev,sar_v2,sar_admission}.mjs`:
 Reproduce:
 
 ```bash
-npm test                                   # 30 contract tests
-node scripts/parity-check.mjs ../HarnessMM  # differential parity, 0 disagreements
+cd pi-harnessmm
+npm ci
+npm test
+npm run parity  # compares against the reference modules in this checkout
 ```
 
 ## How the pi adapter runs a plan

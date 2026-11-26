@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-26",
-  "origin": "https://github.com/YuhuaJiang2002/PhiAgent",
+  "origin": "Local PhiAgent research workspace; extracted on 2026-10-26",
   "description": "Current local HarnessMM source, including uncommitted research code. This is a new repository without parent Git history.",
   "release_changes": "Deployment paths and worker hostnames use placeholders; scientific policies, model identities and algorithm constants retain their source values. The package namespace initializer omits unrelated robotics exports.",
   "files": [
@@ -89,7 +89,7 @@
         },
         {
           "sha256": "2d18c9d7c09566d418b2522b24feb11439bb395d2164d07372739eaf4703b5e8",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "integrations/deepseek_harness/edgebench_backend.py"
@@ -187,7 +187,7 @@
       "published_history": [
         {
           "sha256": "ccce86ce15aa64a640544ceed9609c9733947cac17645738148f7d7599c70ec7",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -728,7 +728,7 @@
         },
         {
           "sha256": "6e92b451475d81bb665ad9b934609f5eb5e027ce03d404aad045c5659841f217",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "phiagent/harness/codex_gaia2.py"
@@ -784,7 +784,7 @@
         },
         {
           "sha256": "13719f7d192934f2c4057e3a27814c1be6364aac1a4ba093c429b348550e903a",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "phiagent/harness/codex_runtime.py"
@@ -843,7 +843,7 @@
         },
         {
           "sha256": "c491d7da33b1cb41293ba20a651b1e9dbb014e159e66e3ff908d1688f401437b",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "phiagent/harness/codex_vqav2.py"
@@ -1184,7 +1184,7 @@
         },
         {
           "sha256": "16e28aea953c4d66bce332a06738629bebc84d43b2fb42c5bb6a59f6e06e0499",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "phiagent/harness/gaia2_calendar_family_registration.py"
@@ -2964,7 +2964,7 @@
         },
         {
           "sha256": "1af72739a05a58b81fdea383b5f1cbe6bb6ee4cccce00b825a6190be72a07b4e",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "phiagent/learning/qa_chisel_light_compression.py"
@@ -3921,7 +3921,7 @@
       "published_history": [
         {
           "sha256": "db26bc6a4e4a93e318cf527bd845a4de98ce554b6e02e9d1e928818be761e93a",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4082,7 +4082,7 @@
         },
         {
           "sha256": "c0f2bee2efe9f32eb43521c085a9a7dd2c5fb823e4010fc0aefcead4714641a5",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/collect_codex_chisel.py"
@@ -4113,7 +4113,7 @@
         },
         {
           "sha256": "f6a29822e75ae6c30c9d86ba3cbc34118d0123e51d54bd77b13731b6b0d80f9b",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/collect_industrial_capability.py"
@@ -4142,7 +4142,7 @@
       "published_history": [
         {
           "sha256": "fdfcdb738ab584546ed41607b3cb291c3a62f0aa8d6614ad816fc75a9c662478",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4163,7 +4163,7 @@
       "published_history": [
         {
           "sha256": "2b5a811df8a29575ff123d69d4a358a2967b6d296bef47c4605f902345c5dc4b",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4189,7 +4189,7 @@
       "published_history": [
         {
           "sha256": "1bbf7d1eda61d188f29c194490e1ca44b3e39c1b21e0bcb492e6c22b3357863b",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4391,7 +4391,7 @@
         },
         {
           "sha256": "97cf0656a72f279f7223ff56317d6b594cc1136f345ab989f94587d314bdf2a0",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/prepare_aime_202060.py"
@@ -4449,7 +4449,7 @@
       "published_history": [
         {
           "sha256": "29aae7b50cb78e7c3c7d05bcd0992f7f47075c7d1bed37965fbe8baa58d81948",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4469,7 +4469,7 @@
       "published_history": [
         {
           "sha256": "c423c63460420dc16d40f735b776852d155a33e4eee85fe3a5e5c8cf43315986",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4493,7 +4493,7 @@
       "published_history": [
         {
           "sha256": "24490d80e59b0e871ae259a3fdf3d431cae9f741657dbc714e7fdb874e224914",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4507,7 +4507,7 @@
       "published_history": [
         {
           "sha256": "4e42c8a305a07895eeac911353e3d42d82b1e9d40ee128eee160652b73d54e37",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4521,7 +4521,7 @@
       "published_history": [
         {
           "sha256": "1f461de1163d12fada6097b71702e5841622a4055923713aaf708cfc71c2692a",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4567,7 +4567,7 @@
         },
         {
           "sha256": "24793d1078607e88e97e460e5df5a203547b35a0824474323d187d376785dca3",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/prepare_terminal_bench_solpi_campaign.py"
@@ -4686,7 +4686,7 @@
         },
         {
           "sha256": "5f7e2bcf89ad6f48406b82fac46e04db867f6000e69e63f2705c4505b533c991",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/qa_lossless_routing_protocol.py"
@@ -4711,7 +4711,7 @@
         },
         {
           "sha256": "ef29b903828d2c559d7c2036cc4c46648ef009de6413844945b6eea75645ac53",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/qa_profile_compression_protocol.py"
@@ -4726,7 +4726,7 @@
       "published_history": [
         {
           "sha256": "e1fb09238e7d3be738bde71b13b59a50361f99ce5027f5824e3896bbf444e17f",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4746,7 +4746,7 @@
         },
         {
           "sha256": "c6eaa18324c28541173653de6407c2b9370bd4650452b194c6cfe399857bd0e3",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/recover_codex_gaia_native_judge.py"
@@ -4768,7 +4768,7 @@
       "published_history": [
         {
           "sha256": "dba3d251a69d8f121fa656925fd7ae53cf0b632ad091f3096d3b062af47d8d90",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4795,7 +4795,7 @@
         },
         {
           "sha256": "1751f4778de1a3bb1656df98feb660a8597e9ec2f66d6048861f9218a793e909",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/recover_terminal_verifier.py"
@@ -4814,7 +4814,7 @@
       "published_history": [
         {
           "sha256": "a8443691d5d5013019cfb5684bcebee826c143fab53ac2b64cbe2267e7998cd4",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -4990,7 +4990,7 @@
       "published_history": [
         {
           "sha256": "3c03fc2bede1315ed73a69cfcdbecb9905cc07f175a057c048029f56d7fe3133",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -5066,7 +5066,7 @@
         },
         {
           "sha256": "8259ca840110114a8ebafcfe569e961f468f7d292413a7be930c244b7363f44f",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_chisel_instruction_only_validation.py"
@@ -5152,7 +5152,7 @@
         },
         {
           "sha256": "fc45ab30dd99ca16d571efa50e457a9bad21c851b3630182ee54ca4290d6fe54",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_codex_chisel_terminal.py"
@@ -5193,7 +5193,7 @@
         },
         {
           "sha256": "7a86e494ee4778cff07ed19d2bae8ce228c2ea57feb66ccdeac8399b8fb1ee0b",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_codex_gaia2.py"
@@ -5217,7 +5217,7 @@
         },
         {
           "sha256": "9d2fa024db7626fcd0f3203c0dcc0099de878d94a5af028ecd9ad8dab206afe8",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_codex_gaia2_campaign.py"
@@ -5241,7 +5241,7 @@
         },
         {
           "sha256": "f612ed76609e9bfcef3b0f86bd296917085252a5b9272bdaeee18259bfa60da6",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_codex_native_app_bank_campaign.py"
@@ -5265,7 +5265,7 @@
         },
         {
           "sha256": "8f9ff7d9a00fdd415c876f4c31fccfb49737a64bf084455f35dfed4d518ff7f3",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_codex_terminal.py"
@@ -5286,7 +5286,7 @@
         },
         {
           "sha256": "09cfb471200b292b5487954f598fc7eac17b29063eb634e755430d4ddbc27c44",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_codex_terminal_bank_campaign.py"
@@ -5353,7 +5353,7 @@
         },
         {
           "sha256": "7999fd863fe251a9393cb7ee58194083bfa161c65cdadd23953eabc8fef9a517",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_deepseek_gaia2.py"
@@ -5401,7 +5401,7 @@
         },
         {
           "sha256": "8d03a63fb08acd0b9b89bec57cfa6c818d585e2be97f6bce95b6c4e789274380",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_deepseek_terminal.py"
@@ -5422,7 +5422,7 @@
         },
         {
           "sha256": "850635ebb0f1aaae2c5f9f08b72b4099d5a66640efc5e448c7988b01ad18d83b",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_deepseek_terminal_campaign.py"
@@ -5456,7 +5456,7 @@
         },
         {
           "sha256": "28e403cfcef0490c9e39fbb58f80fa27354eff6ca01f4bb96c4017a97ea39d1a",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_figure3_codex_recovery.py"
@@ -5484,7 +5484,7 @@
         },
         {
           "sha256": "adcf5acc0e3d9146872f00ad2c22a56e121f2b682f724d59774ad4466da179bc",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_figure3_deepseek_protected.py"
@@ -5599,7 +5599,7 @@
         },
         {
           "sha256": "9f81cfe9beb2dd610c646743617a05639f58d2dfc5d860bab1778d2d42bbcd52",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_industrial_efficiency_rsi.py"
@@ -5627,7 +5627,7 @@
         },
         {
           "sha256": "aa8d7562416afd07315063cf5b46423aeea05803664268e5fd289cc9a9dacf64",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_industrial_train_rsi.py"
@@ -5646,7 +5646,7 @@
       "published_history": [
         {
           "sha256": "9974bbdda0cf23ad5792dea4833c5ba5149a1bcf4e2e75b9adc1925810573246",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -5768,7 +5768,7 @@
         },
         {
           "sha256": "73505d5ef40229e449047d15b85b7f270976fe2a54018b19f8e681087e8a3563",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_terminal_bench_jev.py"
@@ -5799,7 +5799,7 @@
         },
         {
           "sha256": "9b1151805e8f467120637233a2908844569ecfa894636153a446a4fcc6802997",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/run_terminal_bench_native.py"
@@ -5863,7 +5863,7 @@
         },
         {
           "sha256": "312b0499f6d81f65550d35fd3f0badb98858d59dc53f9a43af9f5b060f630eac",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/serve_codex_deepseek.py"
@@ -5904,7 +5904,7 @@
       "published_history": [
         {
           "sha256": "779cfcb3a15e5202099da92678f3e174b4bca3de4e50fffa634e269282c5532f",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -5929,7 +5929,7 @@
       "published_history": [
         {
           "sha256": "05367abe1c17da2158ef1e065535b1267d8c9ac7c12110bb2b764a3f167276db",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -5949,7 +5949,7 @@
       "published_history": [
         {
           "sha256": "a353d21bf40aaa6fea2f7c201f8157855fa8931528b73f7cc89cf42d09b9cf00",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -5988,7 +5988,7 @@
       "published_history": [
         {
           "sha256": "17d77e27f6e16218cf55cc19135393e52105bfc59e5594fa8417b02d4c73d435",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -6057,7 +6057,7 @@
         },
         {
           "sha256": "ddbf0d589a0dffcbcd26ef9284135c5ea6850763157ce9bfe2fb384cf5d31eb3",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/terminal_network_lifecycle.py"
@@ -6075,7 +6075,7 @@
       "published_history": [
         {
           "sha256": "6a672922f1ae8ac4efc7d501d1bd1b32d62309105fa9b6ef5af71759f9eab5c6",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -6187,7 +6187,7 @@
       "published_history": [
         {
           "sha256": "f3673cca154045fe05624a5390f583f87dbba5cbb8f37d7f28b3844e200b3480",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -6201,7 +6201,7 @@
       "published_history": [
         {
           "sha256": "b5fe06efdb01588f52b69918091a0a144f0e5f96c9a6ec1cc709f3c7d3b13d4a",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ]
     },
@@ -6243,7 +6243,7 @@
         },
         {
           "sha256": "963aed79a5de3fba4f3e13490cadf71a0dbeed208c7573bd6118335175293a10",
-          "reference": "YuhuaJiang2002/HarnessMM@ece07bb"
+          "reference": "ece07bb"
         }
       ],
       "source_path": "scripts/watch_industrial_research.py"
@@ -6863,14 +6863,14 @@
       ],
       "source_files": [
         {
-          "repository": "cvpr_vigrace_2027",
           "path": "scripts/run_miniwob.py",
-          "sha256": "916dfa376ace14963d5516304eb488e404fb98ec2a1de6376a7bff9623190989"
+          "sha256": "916dfa376ace14963d5516304eb488e404fb98ec2a1de6376a7bff9623190989",
+          "historical_workspace": "visual-agent research workspace"
         },
         {
-          "repository": "cvpr_vigrace_2027",
           "path": "src/vigrace/core.py",
-          "sha256": "e565965fa1977768295c045e68e7d3117215c32630899e2b59270bf8e76c7ff5"
+          "sha256": "e565965fa1977768295c045e68e7d3117215c32630899e2b59270bf8e76c7ff5",
+          "historical_workspace": "visual-agent research workspace"
         }
       ]
     },
@@ -6912,7 +6912,9 @@
     "pyproject.toml",
     "scripts/__init__.py",
     "scripts/verify_release.py",
-    "tests/__init__.py"
+    "tests/__init__.py",
+    "scripts/check_self_contained.py",
+    "docs/SELF_CONTAINED.md"
   ],
   "updates": [
     {
@@ -6948,5 +6950,6 @@
       "compatibility": "Legacy imports alias canonical module objects; historical protocols and archived reproduction files are unchanged.",
       "source_freeze": "Renamed public sources require a new experiment source freeze."
     }
-  ]
+  ],
+  "repository": "https://github.com/YuhuaJiang2002/HarnessMinusMinus"
 }

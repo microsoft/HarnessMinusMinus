@@ -15,6 +15,8 @@ supported. The [migration guide](PACKAGE_MIGRATION.md) describes source paths
 and compatibility. Original experimental workspaces and paid records remain
 outside this repository.
 
+See [single-checkout checks](SELF_CONTAINED.md) for source and dependency validation.
+
 ## Local checks
 
 ```bash
@@ -47,15 +49,11 @@ SearchQA and component-quality runners read their repository identity
 from the checkout's `origin` remote. Component-quality checks require an external
 `--source-git-state` receipt to match that origin by default. For a source-only
 deployment or a receipt from another repository, pass `--source-repository
-OWNER/REPOSITORY` to bind the expected identity explicitly. For example, an
-original PhiAgent receipt uses `--source-repository YuhuaJiang2002/PhiAgent`;
-its recorded repository and bytes stay unchanged.
+OWNER/REPOSITORY` to bind the expected identity explicitly. The receipt's recorded repository and bytes stay unchanged.
 
-`SOURCE_MANIFEST.json` records extraction origins and historical source references.
-The Pi extension's `NOTICE` preserves its original port attribution and
-the earlier `YuhuaJiang2002/HarnessMM` source. The bundled Pi package
-links to this repository; its original author remains `jlon` and its upstream
-project remains [jlon/pi-harnessmm](https://github.com/jlon/pi-harnessmm).
+`SOURCE_MANIFEST.json` records historical extraction details and verifies the
+bundled files. The Pi extension's original attribution remains in its `NOTICE`;
+installation and parity checks use this checkout's bundled source.
 
 The [integration index](../integrations/README.md) exposes Baseline, Codex and
 DeepSeek harnesses. `python examples/harness_boundaries.py` checks the baseline

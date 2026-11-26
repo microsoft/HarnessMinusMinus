@@ -81,7 +81,7 @@ def test_external_receipt_identity_is_bound_and_original_bytes_preserved(
     assert (output / "source-git-state.json").read_bytes() == original
     assert provenance["source_git_state_sha256"] == hashlib.sha256(original).hexdigest()
 
-    state["repository"] = "YuhuaJiang2002/PhiAgent"
+    state["repository"] = "example/historical-source"
     receipt.write_text(json.dumps(state, indent=2) + "\n")
     historical_bytes = receipt.read_bytes()
     with pytest.raises(quality.ProtocolError, match="invalid identity"):
@@ -91,7 +91,7 @@ def test_external_receipt_identity_is_bound_and_original_bytes_preserved(
     # An explicit historical identity works in source-only deployments without Git.
     monkeypatch.setattr(quality, "ROOT", tmp_path / "source-only")
     provenance = quality.git_provenance(
-        tmp_path / "historical", receipt, expected_repository="YuhuaJiang2002/PhiAgent",
+        tmp_path / "historical", receipt, expected_repository="example/historical-source",
     )
     assert provenance["source_git_state"] == state
     assert (tmp_path / "historical/source-git-state.json").read_bytes() == historical_bytes
