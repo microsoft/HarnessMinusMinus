@@ -72,7 +72,7 @@ FIGURE_HASHES = {
     "tsinghua-emblem.png": "735fb1b0df6f233ded7ba755efca058181d6ce1b843fe53da8f68c1ac603a190",
 }
 
-# Preserve the existing author alias map; changes still require a fresh review.
+# Retain the reviewed alias map only when checking historical Git blobs.
 MAILMAP_SHA256 = "383cfc8ebb47104e67007a07d47fcbf1a1e1adb1c55f85869a6b0954e2a3c5b9"
 
 
@@ -106,7 +106,7 @@ def check_bytes(name, data, errors, *, historical=False):
     check_name(name, errors)
     path = PurePosixPath(name)
     if path.name == ".mailmap":
-        if hashlib.sha256(data).hexdigest() != MAILMAP_SHA256:
+        if not historical or hashlib.sha256(data).hexdigest() != MAILMAP_SHA256:
             errors.append(f"{name}: author alias map requires review")
         return
     if path.suffix in {".gif", ".png"}:

@@ -16,10 +16,15 @@ ROOT = Path(__file__).resolve().parents[1]
 LOCAL_PACKAGES = {"harnessmm", "phiagent", "integrations", "scripts", "chisel"}
 GENERATED = {".git", ".venv", "node_modules", "__pycache__", "build", "dist"}
 PROJECT_LINK = re.compile(
-    r"(?:https?://github\.com/|git@github\.com:|git:github\.com/)"
-    r"(?:YuhuaJiang2002/(?:HarnessMM(?:-R)?|HarnessMinusMinus|PhiAgent(?:-0)?)"
-    r"|microsoft/HarnessMinusMinus|jlon/pi-harnessmm|DSH-Extensions-list/dsh-harnessmm)(?=[/.@\s\"'):#]|$)"
+    r"(?:https?://(?:www\.)?github\.com/|(?:ssh://)?git@github\.com[:/]|git:github\.com/"
+    r"|https?://(?:raw\.githubusercontent\.com|codeload\.github\.com)/"
+    r"|https?://api\.github\.com/repos/)"
+    r"(?P<repository>[A-Za-z0-9_.-]+/(?:HarnessMM(?:-[RV])?|HarnessMinusMinus(?:-[RV])?"
+    r"|PhiAgent(?:-0)?|pi-harnessmm|dsh-harnessmm))(?=[/.@\s\"'):#?]|$)",
+    re.IGNORECASE,
 )
+# Original attribution for the bundled third-party Pi extension.
+UPSTREAM_NOTICES = {("NOTICE", "jlon/pi-harnessmm")}
 
 
 def git(root: Path, *arguments: str) -> str | None:
@@ -71,13 +76,10 @@ def check(root: Path) -> tuple[list[str], int]:
             text = path.read_text()
         except (UnicodeError, OSError):
             continue
-        # Notices retain original attribution. Test fixtures can name synthetic
-        # or historical identities without creating a deployment dependency.
-        if path.name != "NOTICE" and "tests" not in path.parts:
-            for match in PROJECT_LINK.finditer(text):
-                linked = re.split(r"github\.com[:/]", match[0], maxsplit=1)[-1]
-                if linked != identity:
-                    errors.append(f"{name}: points to another project: {linked}")
+        for match in PROJECT_LINK.finditer(text):
+            linked = match["repository"].lower()
+            if linked != identity.lower() and (name, linked) not in UPSTREAM_NOTICES:
+                errors.append(f"{name}: points to another project: {linked}")
         if path.suffix == ".py":
             tree = ast.parse(text, filename=name)
             for node in ast.walk(tree):
