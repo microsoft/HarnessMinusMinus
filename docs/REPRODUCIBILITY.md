@@ -44,7 +44,7 @@ uses archived integer aggregates.
 
 ## Research runner entry points
 
-The current repository is [YuhuaJiang2002/HarnessMinusMinus](https://github.com/YuhuaJiang2002/HarnessMinusMinus).
+The current repository is [microsoft/HarnessMinusMinus](https://github.com/microsoft/HarnessMinusMinus).
 SearchQA and component-quality runners read their repository identity
 from the checkout's `origin` remote. Component-quality checks require an external
 `--source-git-state` receipt to match that origin by default. For a source-only

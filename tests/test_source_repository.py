@@ -12,13 +12,13 @@ from scripts.source_repository import repository_from_remote, source_repository
 
 
 @pytest.mark.parametrize("remote", [
-    "git@github.com:YuhuaJiang2002/HarnessMinusMinus.git",
-    "ssh://git@github.com/YuhuaJiang2002/HarnessMinusMinus.git",
-    "https://github.com/YuhuaJiang2002/HarnessMinusMinus.git",
-    "https://github.com/YuhuaJiang2002/HarnessMinusMinus",
+    "git@github.com:microsoft/HarnessMinusMinus.git",
+    "ssh://git@github.com/microsoft/HarnessMinusMinus.git",
+    "https://github.com/microsoft/HarnessMinusMinus.git",
+    "https://github.com/microsoft/HarnessMinusMinus",
 ])
 def test_supported_remote_forms(remote):
-    assert repository_from_remote(remote) == "YuhuaJiang2002/HarnessMinusMinus"
+    assert repository_from_remote(remote) == "microsoft/HarnessMinusMinus"
 
 
 @pytest.mark.parametrize("remote", [

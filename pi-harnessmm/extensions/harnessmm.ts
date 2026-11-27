@@ -7,7 +7,7 @@
  * terminal interface, and certifies the reasoning callback it replaced. Control
  * returns to the model on exhaustion, unknown evidence, native error or abstention.
  *
- * Reference implementation: https://github.com/YuhuaJiang2002/HarnessMinusMinus
+ * Reference implementation: https://github.com/microsoft/HarnessMinusMinus
  *   integrations/deepseek_harness/cot_jev.mjs, sar_v2.mjs, sar_admission.mjs
  * The original port's source and attribution are recorded in NOTICE.
  */

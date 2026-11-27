@@ -16,12 +16,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YuhuaJiang2002/HarnessMinusMinus.git",
+    "url": "git+https://github.com/microsoft/HarnessMinusMinus.git",
     "directory": "pi-harnessmm"
   },
-  "homepage": "https://github.com/YuhuaJiang2002/HarnessMinusMinus/tree/main/pi-harnessmm#readme",
+  "homepage": "https://github.com/microsoft/HarnessMinusMinus/tree/main/pi-harnessmm#readme",
   "bugs": {
-    "url": "https://github.com/YuhuaJiang2002/HarnessMinusMinus/issues"
+    "url": "https://github.com/microsoft/HarnessMinusMinus/issues"
   },
   "files": [
     "extensions",

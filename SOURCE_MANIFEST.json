@@ -6951,5 +6951,5 @@
       "source_freeze": "Renamed public sources require a new experiment source freeze."
     }
   ],
-  "repository": "https://github.com/YuhuaJiang2002/HarnessMinusMinus"
+  "repository": "https://github.com/microsoft/HarnessMinusMinus"
 }

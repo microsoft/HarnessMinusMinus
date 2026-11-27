@@ -15,8 +15,8 @@ dependencies = []
 keywords = ["agents", "harness", "decision-reuse", "token-efficiency", "recursive-self-improvement"]
 
 [project.urls]
-Repository = "https://github.com/YuhuaJiang2002/HarnessMinusMinus"
-Issues = "https://github.com/YuhuaJiang2002/HarnessMinusMinus/issues"
+Repository = "https://github.com/microsoft/HarnessMinusMinus"
+Issues = "https://github.com/microsoft/HarnessMinusMinus/issues"
 
 [project.optional-dependencies]
 dev = ["pytest==9.0.3", "jsonschema==4.26.0", "build==1.2.2.post1"]
